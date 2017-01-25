@@ -46,7 +46,7 @@ var main = function(game){}
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
 		
 			game.load.audio('jump', 'sounds/jump.mp3');
-			game.load.audio('run', 'sounds/walk1.mp3');
+			game.load.audio('run', 'sounds/walk1.ogg');
 			game.load.audio('brickBreaking', 'sounds/brickBreaking.mp3');
 			game.load.audio('coinCollect', 'sounds/coinCollect.mp3');
 			game.load.audio('energy', 'sounds/energy.mp3');
