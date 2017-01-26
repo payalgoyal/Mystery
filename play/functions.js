@@ -43,7 +43,7 @@
 	}
 	
 	function goNextLevel(){
-		playAudio("levelClick");
+		playAudio("levelClicked");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
