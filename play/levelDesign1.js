@@ -283,7 +283,7 @@ var levelDesign1 = function(game){}
 		update: function() { 
 			
 			if (mysprite.body.velocity.x == 0){
-				run.stop();
+				my_media.stop();
 			}
 		
 			if (mysprite.energised == 1){
@@ -417,6 +417,8 @@ var levelDesign1 = function(game){}
 							enemies.children[en].body.gravity.y = 0;
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
+							my_media.stop();
+							playAudio("enemyKilled");
 							enemies.children[en].kill();
 							setTimeout(function(){
 								enemyDyin.kill();

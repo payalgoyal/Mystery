@@ -1,28 +1,5 @@
 	var levelButtons = [];
 	
-	var playAudio = function(audioID) {
-	
-		var audioElement = document.getElementById(audioID);
-		var url = audioElement.getAttribute('src');
-		
-		var loop = function (status) {
-			if (status === Media.MEDIA_STOPPED && gameAlive === true) {
-				my_media.play();
-			}
-		};
-		
-		if (audioID === "walk"){
-			my_media = new Media(url, null, null, loop); 
-		}
-		else{
-			my_media = new Media(url, null, null); 
-		}
-		
-			   // // // Play audio
-		 my_media.play();
-		// // $("#Plane").on("ended", playAudio("Plane"));
-	} 
-	
 	var levels = function(game){}
 // Creates a new 'main' state that will contain the game
    levels.prototype = {
