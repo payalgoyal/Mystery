@@ -47,7 +47,7 @@
 	}
 	
 	function goNextLevel(){
-		playAudio("levelClicked");
+		// playAudio("levelClicked");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
@@ -239,7 +239,7 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
 			mysprite.body.velocity.x = 100;
-			playAudio("enemyKilled");
+			// playAudio("enemyKilled");
 			b.kill();
 		}
 	}
@@ -354,7 +354,7 @@
 			b.visible = false;
 			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
-			playAudio("brickBreaking");
+			// playAudio("brickBreaking");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			setTimeout(function(){
@@ -404,7 +404,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		playAudio("energy");
+		// playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -460,7 +460,7 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			playAudio("treasureHit");
+			// playAudio("treasureHit");
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
@@ -482,7 +482,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			playAudio("coinCollect");
+			// playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -590,7 +590,7 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			playAudio("walk");
+			// playAudio("walk");
 			mysprite.body.velocity.x = 100;
 		}
 		
@@ -613,7 +613,7 @@
 			leftButton.pressed = "true";
 			mysprite.animations.play('left');
 			move = "left";
-			playAudio("walk");
+			// playAudio("walk");
 			mysprite.body.velocity.x = -100;	
 		}
 	}
@@ -889,6 +889,7 @@
 			for (var ind = 0;ind<treasureBrick.children.length;ind++){
 				if(treasureBrick.children[ind].alive && tresCheck == 0){
 					if (treasureBrick.children[ind].x < mysprite.x && (treasureBrick.children[ind].x+treasureBrick.children[ind].width) > mysprite.x
+					&& treasureBrick.children[ind].y > mysprite.y+mysprite.height && treasureBrick.children[ind].y > mysprite.y+mysprite.height-5
 					){
 						tresCheck = 1;
 						mysprite.y = treasureBrick.children[ind].y - mysprite.height - 2;
@@ -917,6 +918,7 @@
 			for (var ind = 0;ind<rock.children.length;ind++){
 				if(rock.children[ind].alive && check == 0){
 					if (rock.children[ind].x < mysprite.x && (rock.children[ind].x+rock.children[ind].width) > mysprite.x
+					&& rock.children[ind].y > mysprite.y+mysprite.height && rock.children[ind].y > mysprite.y+mysprite.height-5
 					){
 						check = 1;
 						mysprite.y = rock.children[ind].y - mysprite.height - 2;
@@ -972,7 +974,7 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					playAudio("enemyKilled");
+					// playAudio("enemyKilled");
 					enemies.children[en].kill();
 					setTimeout(function(){
 						enemyDyin.kill();
