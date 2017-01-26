@@ -1,9 +1,7 @@
 	var my_media = null;
 	
 	var playAudio = function(audioID) {
-		if (my_media != null){
-			my_media.stop();
-		}
+		
 		var audioElement = document.getElementById(audioID);
 		var url = audioElement.getAttribute('src');
 		
