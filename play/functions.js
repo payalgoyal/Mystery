@@ -484,7 +484,7 @@
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
 			// my_media.stop();
-			// playAudio("coinCollect");
+			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -592,7 +592,7 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			playAudio('walk');
+			// playAudio('walk');
 			mysprite.body.velocity.x = 100;
 		}
 		
@@ -616,7 +616,7 @@
 			mysprite.animations.play('left');
 			move = "left";
 			// run.play();
-			playAudio('walk');
+			// playAudio('walk');
 			mysprite.body.velocity.x = -100;	
 		}
 	}
@@ -1001,8 +1001,8 @@
 			mysprite.body.velocity.x = 0;
 			stopScene();
 			// run.stop();
-			my_media.stop();
-			playAudio("jump");
+			// my_media.stop();
+			// playAudio("jump");
 				
 			setTimeout(function(){
 				pos = "down";
