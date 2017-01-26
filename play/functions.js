@@ -592,7 +592,8 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			// playAudio('walk');
+			my_media.stop();
+			playAudio("walk");
 			mysprite.body.velocity.x = 100;
 		}
 		
@@ -615,8 +616,8 @@
 			leftButton.pressed = "true";
 			mysprite.animations.play('left');
 			move = "left";
-			// run.play();
-			// playAudio('walk');
+			my_media.stop();
+			playAudio("walk");
 			mysprite.body.velocity.x = -100;	
 		}
 	}
@@ -1001,8 +1002,8 @@
 			mysprite.body.velocity.x = 0;
 			stopScene();
 			// run.stop();
-			// my_media.stop();
-			// playAudio("jump");
+			my_media.stop();
+			playAudio("jump");
 				
 			setTimeout(function(){
 				pos = "down";
