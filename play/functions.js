@@ -1,5 +1,5 @@
 	var playAudio = function(audioID) {
-		stopAudio();
+		
 		var audioElement = document.getElementById(audioID);
 		var url = audioElement.getAttribute('src');
 		
@@ -586,6 +586,7 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
+			stopAudio();
 			playAudio("walk");
 			mysprite.body.velocity.x = 100;
 		}
