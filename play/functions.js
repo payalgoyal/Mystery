@@ -403,7 +403,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		my_media.stop();
+		// my_media.stop();
 		playAudio("energy");
 		mysprite.energised = 1;
 	}
@@ -483,7 +483,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			my_media.stop();
+			// my_media.stop();
 			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
