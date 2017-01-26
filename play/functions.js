@@ -43,8 +43,8 @@
 	}
 	
 	function goNextLevel(){
-		my_media.stop();
-		playAudio("levelClicked");
+		// my_media.stop();
+		// playAudio("levelClicked");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
@@ -236,8 +236,8 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
 			mysprite.body.velocity.x = 100;
-			my_media.stop();
-			playAudio("enemyKilled");
+			// my_media.stop();
+			// playAudio("enemyKilled");
 			b.kill();
 		}
 	}
@@ -352,8 +352,8 @@
 			b.visible = false;
 			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
-			my_media.stop();
-			playAudio("brickBreaking");
+			// my_media.stop();
+			// playAudio("brickBreaking");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			setTimeout(function(){
@@ -404,7 +404,7 @@
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
 		// my_media.stop();
-		playAudio("energy");
+		// playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -460,8 +460,8 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			my_media.stop();
-			playAudio("treasureHit");
+			// my_media.stop();
+			// playAudio("treasureHit");
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
@@ -484,7 +484,7 @@
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
 			// my_media.stop();
-			playAudio("coinCollect");
+			// playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -975,8 +975,8 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					my_media.stop();
-					playAudio("enemyKilled");
+					// my_media.stop();
+					// playAudio("enemyKilled");
 					enemies.children[en].kill();
 					setTimeout(function(){
 						enemyDyin.kill();
