@@ -43,7 +43,7 @@
 	}
 	
 	function goNextLevel(){
-		levelClick.play();
+		// levelClick.play();
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
@@ -234,8 +234,8 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
 			mysprite.body.velocity.x = 100;
-			run.stop();
-			enemyKill.play();
+			// run.stop();
+			// enemyKill.play();
 			b.kill();
 		}
 	}
@@ -350,7 +350,7 @@
 			b.visible = false;
 			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
-			brickBreaking.play();
+			// brickBreaking.play();
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			setTimeout(function(){
@@ -457,7 +457,7 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			treasureHit.play();
+			// treasureHit.play();
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
@@ -479,7 +479,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			coinCollect.play();
+			// coinCollect.play();
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -971,8 +971,8 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					run.stop();
-					enemyKill.play();
+					// run.stop();
+					// enemyKill.play();
 					enemies.children[en].kill();
 					setTimeout(function(){
 						enemyDyin.kill();
@@ -996,8 +996,8 @@
 			mysprite.body.velocity.y = -80;
 			mysprite.body.velocity.x = 0;
 			stopScene();
-			run.stop();
-			jump.play();
+			// run.stop();
+			// jump.play();
 				
 			setTimeout(function(){
 				pos = "down";
