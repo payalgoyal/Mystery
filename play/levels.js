@@ -1,5 +1,28 @@
 	var levelButtons = [];
 	
+	var playAudio = function(audioID) {
+	
+		var audioElement = document.getElementById(audioID);
+		var url = audioElement.getAttribute('src');
+		
+		var loop = function (status) {
+			if (status === Media.MEDIA_STOPPED && gameAlive === true) {
+				my_media.play();
+			}
+		};
+		
+		if (audioID === "walk"){
+			my_media = new Media(url, null, null, loop); 
+		}
+		else{
+			my_media = new Media(url, null, null); 
+		}
+		
+			   // // // Play audio
+		 my_media.play();
+		// // $("#Plane").on("ended", playAudio("Plane"));
+	} 
+	
 	var levels = function(game){}
 // Creates a new 'main' state that will contain the game
    levels.prototype = {
@@ -14,14 +37,11 @@
 			game.load.spritesheet("coinsSprite", "images/coinSprite.png",40,39);
 			game.load.spritesheet("rightSprite", "images/dude.png",32,48);
 			
-			game.load.audio('levelClick', 'sounds/levelClick.mp3');
-			
 		},
 
 		// Fuction called after 'preload' to setup the game 
 		create: function() { 
-			levelClick = game.add.audio('levelClick');
-		
+			
 			levelButtons[0] = game.add.button(150,100,"levelsBg");
 			textOnButton = game.add.text(levelButtons[0].x+levelButtons[0].width/3,levelButtons[0].y+levelButtons[0].height/3,1,{
 				font:"bold 16px Arial", fill: "white" 
@@ -53,13 +73,13 @@
    }
    
 	function levelNo1(){
-		levelClick.play();
+		playAudio("levelClick");
 		game.state.add("LevelDesign1",levelDesign1);
 		game.state.start("LevelDesign1");
 	}
 	
 	function levelNo2(){
-		levelClick.play();
+		playAudio("levelClick");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}

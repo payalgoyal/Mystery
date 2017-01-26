@@ -43,7 +43,7 @@
 	}
 	
 	function goNextLevel(){
-		playAudio("levelClicked");
+		playAudio("levelClick");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
@@ -996,6 +996,7 @@
 			mysprite.body.velocity.x = 0;
 			stopScene();
 			// run.stop();
+			my_media.stop();
 			playAudio("jump");
 				
 			setTimeout(function(){
@@ -1018,7 +1019,7 @@
 								mysprite.y = steps2.children[stepsInd].y - mysprite.height;
 								steps2.children[stepsInd].body.velocity.y = 0;
 								mysprite.body.gravity.y = 0;
-								run.stop();
+								my_media.stop();
 								mysprite.body.velocity.x = 0;
 								mysprite.body.velocity.y = 0;
 								upButton.pressed = "false";
