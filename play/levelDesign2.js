@@ -30,9 +30,9 @@ var playerProperties = {
   velocity: 300,
 }; 
 
-var levelDesign1 = function(game){}
+var levelDesign2 = function(game){}
 // Creates a new 'main' state that will contain the game
-	levelDesign1.prototype = {
+	levelDesign2.prototype = {
 		preload: function() { 
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);
@@ -120,6 +120,7 @@ var levelDesign1 = function(game){}
 			mysprite=game.add.sprite(game.width/6,game.height/1.75,'rightSprite');
 			mysprite.frame=4;
 			mysprite.energised = 0;
+			mysprite.checkWorldBounds = true;
 			
 			tubes.children[0].reset(856,game.height/1.9);
 			

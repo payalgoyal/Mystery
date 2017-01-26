@@ -25,33 +25,11 @@ var tresIndex = -1;
 var tresCheck = 0;
 var coinsCollected = 0;
 var jumpCount = 0;
+var move = "stand";
 
 var playerProperties = {
   velocity: 300,
 }; 
-
-var playAudio = function(audioID) {
-	
-	var audioElement = document.getElementById(audioID);
-	var url = audioElement.getAttribute('src');
-	
-	var loop = function (status) {
-		if (status === Media.MEDIA_STOPPED && gameAlive === true) {
-			my_media.play();
-		}
-	};
-	
-	if (audioID === "walk"){
-		my_media = new Media(url, null, null, loop); 
-	}
-	else{
-		my_media = new Media(url, null, null); 
-	}
-	
-		   // // // Play audio
-	 my_media.play();
-	// // $("#Plane").on("ended", playAudio("Plane"));
-} 
 
 var levelDesign1 = function(game){}
 // Creates a new 'main' state that will contain the game
@@ -119,30 +97,31 @@ var levelDesign1 = function(game){}
 			enemies.enableBody = true;
 			enemies.createMultiple(7,'villian');
 			
-			enemies.children[0].x = 1390;
+			enemies.children[0].reset(1390,game.height/1.65);
 			enemies.children[0].vel = 100;
 			
-			enemies.children[1].x = 2750;
+			enemies.children[1].reset(2750,game.height/1.65);
 			enemies.children[1].vel = 200;
 			
-			enemies.children[2].x = 3000;
+			enemies.children[2].reset(3000,game.height/1.65);
 			enemies.children[2].vel = 100;
 			
-			enemies.children[3].x = 3800;
+			enemies.children[3].reset(3800,game.height/1.65);
 			enemies.children[3].vel = 100;
 			
-			enemies.children[4].x = 4190;
+			enemies.children[4].reset(4190,game.height/1.65);
 			enemies.children[4].vel = 100;
 			
-			enemies.children[5].x = 4490;
+			enemies.children[5].reset(4490,game.height/1.65);
 			enemies.children[5].vel = 100;
 			
-			enemies.children[6].x = 5790;
+			enemies.children[6].reset(5790,game.height/1.65);
 			enemies.children[6].vel = 100;
 			
 			mysprite=game.add.sprite(game.width/6,game.height/1.75,'rightSprite');
 			mysprite.frame=4;
 			mysprite.energised = 0;
+			mysprite.checkWorldBounds = true;
 			
 			rock.children[0].reset(856, game.height/2.65);
 			rock.children[0].edgeLeft = true;
@@ -167,6 +146,7 @@ var levelDesign1 = function(game){}
 			rock.children[3].reset(1760, game.height/6);
 			rock.children[4].reset(1800, game.height/6);
 			rock.children[5].reset(1840, game.height/6);
+			rock.children[5].edgeRight = true;
 			
 			steps1.children[0].reset(2340,game.height/1.55);
 			steps2.children[0].reset(2370,game.height/1.64);
@@ -297,7 +277,7 @@ var levelDesign1 = function(game){}
 			game.physics.enable(tubes, Phaser.Physics.ARCADE);
 			
 			game.physics.enable(mysprite, Phaser.Physics.ARCADE);
-			cursors = game.input.keyboard.createCursorKeys();
+			// cursors = game.input.keyboard.createCursorKeys();
 			game.camera.follow(mysprite);
 		},
 		update: function() { 
@@ -424,16 +404,6 @@ var levelDesign1 = function(game){}
 				jumpCount = 0;
 			}
 			
-			// if ((grass.y < mysprite.y+mysprite.height+2) && move == "jump" && pos == "down" && (jumpRight == "true" || jumpLeft =="true")){
-				// mysprite.body.velocity.y = 0;
-				// mysprite.body.velocity.x = 0;
-				// mysprite.body.gravity.y = 0;
-			// }
-			
-			
-			// if(move == "right" || move =="left" || move == "jump"){
-				// enemyCollision();
-			// }
 			
 			if (move == "jump" ){
 				for (en=0;en<enemies.children.length;en++){
@@ -486,7 +456,7 @@ var levelDesign1 = function(game){}
 				
 			}
 			
-			// if (playerBaseLevel == "tube" || playerBaseLevel == "rock" || playerBaseLevel == "steps1" || playerBaseLevel == "steps2")
+			// // if (playerBaseLevel == "tube" || playerBaseLevel == "rock" || playerBaseLevel == "steps1" || playerBaseLevel == "steps2")
 			
 			game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
 			game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
