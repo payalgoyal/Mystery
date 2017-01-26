@@ -43,12 +43,14 @@
 	}
 	
 	function goNextLevel(){
+		mt_media.stop();
 		playAudio("levelClicked");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
 	
 	function rightUp(){
+		rightButton.pressed = "false";
 		rightButton.pressed = "false";
 	}
 	function rightDown(){
@@ -211,7 +213,7 @@
 			
 			mysprite.height = b.height/1.5;
 			mysprite.y = b.y + b.height/3;
-			
+			my_media.stop();
 			setTimeout(function(){
 				mysprite.height = b.height/2.5;
 				mysprite.width = mysprite.width * 1.2;
@@ -350,6 +352,7 @@
 			b.visible = false;
 			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
+			my_media.stop();
 			playAudio("brickBreaking");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
@@ -457,6 +460,7 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
+			my_media.stop();
 			playAudio("treasureHit");
 			treasurePoint(b.parent.getIndex(b));
 		}
@@ -479,6 +483,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
+			my_media.stop();
 			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
@@ -970,7 +975,7 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					// run.stop();
+					my_media.stop();
 					playAudio("enemyKilled");
 					enemies.children[en].kill();
 					setTimeout(function(){
