@@ -1,5 +1,9 @@
+	var my_media = null;
+	
 	var playAudio = function(audioID) {
-		
+		if (my_media != null){
+			my_media.stop();
+		}
 		var audioElement = document.getElementById(audioID);
 		var url = audioElement.getAttribute('src');
 		
@@ -586,7 +590,6 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			stopAudio();
 			playAudio("walk");
 			mysprite.body.velocity.x = 100;
 		}
