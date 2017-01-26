@@ -1,3 +1,26 @@
+	var playAudio = function(audioID) {
+	
+		var audioElement = document.getElementById(audioID);
+		var url = audioElement.getAttribute('src');
+		
+		var loop = function (status) {
+			if (status === Media.MEDIA_STOPPED && gameAlive === true) {
+				my_media.play();
+			}
+		};
+		
+		if (audioID === "walk"){
+			my_media = new Media(url, null, null, loop); 
+		}
+		else{
+			my_media = new Media(url, null, null); 
+		}
+		
+			   // // // Play audio
+		 my_media.play();
+		// // $("#Plane").on("ended", playAudio("Plane"));
+	} 
+	
 	function myspriteMysteryCollision(){
 		levelCompletText = game.add.text(150,10,"Level Completed ",{
 				font:"bold 16px Arial", fill: "red" 
@@ -564,7 +587,8 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			run.play();
+			playAudio('walk');
+			// run.play();
 			mysprite.body.velocity.x = 100;
 		}
 		
@@ -587,7 +611,8 @@
 			leftButton.pressed = "true";
 			mysprite.animations.play('left');
 			move = "left";
-			run.play();
+			// run.play();
+			playAudio('walk');
 			mysprite.body.velocity.x = -100;	
 		}
 	}
