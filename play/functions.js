@@ -587,8 +587,8 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			playAudio('walk');
 			// run.play();
+			playAudio('walk');
 			mysprite.body.velocity.x = 100;
 		}
 		
