@@ -1,7 +1,9 @@
 	var my_media = null;
 	
 	var playAudio = function(audioID) {
-		
+		if (my_media != null){
+			my_media.stop();
+		}
 		var audioElement = document.getElementById(audioID);
 		var url = audioElement.getAttribute('src');
 		
@@ -45,7 +47,7 @@
 	}
 	
 	function goNextLevel(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("LevelDesign2",levelDesign2);
 		game.state.start("LevelDesign2");
 	}
@@ -237,7 +239,7 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
 			mysprite.body.velocity.x = 100;
-			// playAudio("enemyKilled");
+			playAudio("enemyKilled");
 			b.kill();
 		}
 	}
@@ -352,7 +354,7 @@
 			b.visible = false;
 			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
-			// playAudio("brickBreaking");
+			playAudio("brickBreaking");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			setTimeout(function(){
@@ -402,7 +404,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		// playAudio("energy");
+		playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -458,7 +460,7 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			// playAudio("treasureHit");
+			playAudio("treasureHit");
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
@@ -480,7 +482,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			// playAudio("coinCollect");
+			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -588,7 +590,7 @@
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
-			// playAudio("walk");
+			playAudio("walk");
 			mysprite.body.velocity.x = 100;
 		}
 		
@@ -611,7 +613,7 @@
 			leftButton.pressed = "true";
 			mysprite.animations.play('left');
 			move = "left";
-			// playAudio("walk");
+			playAudio("walk");
 			mysprite.body.velocity.x = -100;	
 		}
 	}
@@ -972,7 +974,7 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					// playAudio("enemyKilled");
+					playAudio("enemyKilled");
 					enemies.children[en].kill();
 					setTimeout(function(){
 						enemyDyin.kill();
