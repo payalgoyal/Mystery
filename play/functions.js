@@ -399,7 +399,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		playAudio("energy");
+		// playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
