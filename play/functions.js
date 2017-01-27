@@ -29,7 +29,7 @@
 	function checkWitchVisibility(){
 		witchPresent = -1;
 		for (var i=0;i<enemies.children.length;i++){
-			if (mysprite.x + 400 > enemies.children[i].x && mysprite.x + 150 < enemies.children[i].x){
+			if (mysprite.x + game.width/4 > enemies.children[i].x && mysprite.x + game.width/5 < enemies.children[i].x){
 				witchPresent = i;
 			}
 		}
