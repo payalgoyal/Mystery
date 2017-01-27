@@ -75,6 +75,10 @@ var levelDesign2 = function(game){}
 			treasureBrick.enableBody = true;
 			treasureBrick.createMultiple(5,'treasureBrick');
 			
+			for (var i = 0;i < treasureBrick.children.length;i++){
+				treasureBrick.children[i].traversed = false;
+			}
+			
 			rock = game.add.group();
 			rock.enableBody = true;
 			rock.createMultiple(16, 'rock');
@@ -226,15 +230,16 @@ var levelDesign2 = function(game){}
 			obstructs.push(rock);
 			obstructs.push(steps1);
 			
-			rightButton = game.add.button(game.camera.view.width/3,game.camera.view.height-50,'rightArrow');
+			rightButton = game.add.button(game.camera.view.width/2,game.camera.view.height-50,'rightArrow');
 			rightButton.fixedToCamera = true;
 			leftButton = game.add.button(game.camera.view.width/3.5,game.camera.view.height-50,'leftArrow');
 			leftButton.fixedToCamera = true;
-			upButton = game.add.button(game.camera.view.width/3.2,game.camera.view.height-90,'upArrow');
+			upButton = game.add.button(game.camera.view.width/2.6,game.camera.view.height-90,'upArrow');
 			upButton.fixedToCamera = true;
 			nextLevel = game.add.button(game.camera.view.width/2,game.camera.view.height-90,'nextLevel');
 			nextLevel.fixedToCamera = true;
 			nextLevel.inputEnabled = false;
+			nextLevel.visible = false;
 			
 			rightButton.pressed = "false";
 			
