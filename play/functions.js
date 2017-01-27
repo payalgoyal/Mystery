@@ -91,17 +91,23 @@
 	function checkTresRight(){
 		treasureIndex = -1;
 		
-		// for (var tres = tresIndex+1;tres<treasureBrick.children.length;tres++){
+		if (tresIndex+1 < treasureBrick.children.length){
+			// for (var tres = tresIndex+1;tres<treasureBrick.children.length;tres++){
 			if ((treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width + 10)>treasureBrick.children[tresIndex+1].x){
 				treasureIndex = tresIndex+1;
 			}
-		// }
-		if (treasureIndex > -1){
-			nextElementRock = "treasureRight";
+			// }
+			if (treasureIndex > -1){
+				nextElementRock = "treasureRight";
+			}
+			if (treasureIndex == -1){
+				checkTresRockRight();
+			}
 		}
-		if (treasureIndex == -1){
+		else{
 			checkTresRockRight();
 		}
+		
 	}
 	
 	function checkTresRockRight(){
@@ -133,17 +139,23 @@
 	
 	function checkTresLeft(){
 		treasureIndex = -1;
-		// for (var tres = tresIndex-1;tres>-1;tres--){
+		if (tresIndex-1 > -1){
+			// for (var tres = tresIndex-1;tres>-1;tres--){
 			if ((treasureBrick.children[tresIndex].x - 10)<treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex-1].width){
 				treasureIndex = tresIndex;
 			}
-		// }
-		if (treasureIndex > -1){
-			nextElementRock = "treasureLeft";
+			// }
+			if (treasureIndex > -1){
+				nextElementRock = "treasureLeft";
+			}
+			if (treasureIndex == -1){
+				checkTresRockLeft();
+			}
 		}
-		if (treasureIndex == -1){
+		else{
 			checkTresRockLeft();
 		}
+		
 	}
 	
 	function checkTresRockLeft(){
