@@ -410,6 +410,7 @@
 				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
 				treasureCoin.animations.play('spin');
 				setTimeout(function(){
+					playAudio("coinCollect");
 					treasureCoin.animations.stop();
 					treasureCoin.kill();
 				},150);
@@ -453,7 +454,7 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			playAudio("treasureHit");
+			playAudio("brickBreaking");
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
