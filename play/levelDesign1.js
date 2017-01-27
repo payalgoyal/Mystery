@@ -286,7 +286,7 @@ var levelDesign1 = function(game){}
 			game.camera.follow(mysprite);
 		},
 		update: function() { 
-			if (mysprite.y + mysprite.height < game.height/1.55 - 2){
+			if (mysprite.y + mysprite.height > game.height/1.55 - 2){
 				mysprite.y = game.height/1.75;
 			}
 			// if (mysprite.body.velocity.x == 0){
