@@ -283,9 +283,9 @@ var levelDesign1 = function(game){}
 		},
 		update: function() { 
 			
-			if (mysprite.body.velocity.x == 0){
-				my_media.stop();
-			}
+			// if (mysprite.body.velocity.x == 0){
+				// my_media.stop();
+			// }
 		
 			if (mysprite.energised == 1){
 				if (move == "right"){
