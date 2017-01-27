@@ -42,14 +42,14 @@ var levelDesign1 = function(game){}
 			
 		},
 		create: function() { 
-			game.world.setBounds(0,0,14000,0);
+			game.world.setBounds(0,0,20000,0);
 			
-			cloud = game.add.tileSprite(0, 0,15000,500, 'cloud');
+			cloud = game.add.tileSprite(0, 0,20000,500, 'cloud');
 			
-			ground = game.add.tileSprite(0, game.height/1.5,15000,400, 'ground');
+			ground = game.add.tileSprite(0, game.height/1.5,20000,400, 'ground');
 			
-			fence = game.add.tileSprite(0,279,15000,45,"fence");
-			grass = game.add.tileSprite(0, game.height/1.55, 15000, 15, "grass");
+			fence = game.add.tileSprite(0,279,20000,45,"fence");
+			grass = game.add.tileSprite(0, game.height/1.55, 20000, 15, "grass");
 			
 			targetBox = game.add.sprite(9170,game.height/1.55-50,'targetBox');
 			princess = game.add.sprite(9200,game.height/1.55-110,'princess');
@@ -417,7 +417,6 @@ var levelDesign1 = function(game){}
 							enemies.children[en].body.gravity.y = 0;
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
-							my_media.stop();
 							playAudio("enemyKilled");
 							enemies.children[en].kill();
 							setTimeout(function(){
