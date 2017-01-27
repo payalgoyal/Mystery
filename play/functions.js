@@ -25,8 +25,8 @@
 		// // $("#Plane").on("ended", playAudio("Plane"));
 	} 
 	
-	function myspriteMysteryCollision(){
-		levelCompletText = game.add.text(150,10,"Level Completed ",{
+	function myspriteMysteryCollision(a,b){
+		levelCompletText = game.add.text(game.width/2.5,game.height/1.5,"Level Completed ",{
 				font:"bold 16px Arial", fill: "red" 
 			});
 		levelCompletText.fixedToCamera = true;
@@ -42,8 +42,8 @@
 		mysprite.body.velocity.x = 0;
 		mysprite.body.velocity.y = 0;
 		mysprite.animations.stop();
-		mystery.body.velocity.x = 0;
-		mystery.body.velocity.y = 0;
+		b.body.velocity.x = 0;
+		b.body.velocity.y = 0;
 		nextLevel.onInputDown.add(goNextLevel,this);
 	}
 	
@@ -89,17 +89,23 @@
 	}
 	
 	function checkTresRight(){
-		for (var tres = 0;tres<treasureBrick.children.length;tres++){
-			if ((treasureBrick.children[index].x + treasureBrick.children[index].width + 10)>treasureBrick.children[tres].x){
-				tresIndex = tres;
+		treasureIndex = -1;
+		
+		// for (var tres = tresIndex+1;tres<treasureBrick.children.length;tres++){
+			if ((treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width + 10)>treasureBrick.children[tresIndex+1].x){
+				treasureIndex = tresIndex+1;
 			}
-		}
-		if (tresIndex > -1){
+		// }
+		if (treasureIndex > -1){
 			nextElementRock = "treasureRight";
+		}
+		if (treasureIndex == -1){
+			checkTresRockRight();
 		}
 	}
 	
 	function checkTresRockRight(){
+		tresRockIndex = -1;
 		for (var rockIn = 0;rockIn<rock.children.length;rockIn++){
 			if ((treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width + 10)>rock.children[rockIn].x){
 				tresRockIndex = rockIn;
@@ -111,6 +117,7 @@
 	}
 	
 	function checkRockTresRight(){
+		rockTresIndex = -1;
 		for (var tresIn = 0;tresIn<treasureBrick.children.length;tresIn++){
 			if ((rock.children[index].x + rock.children[index].width + 10) > treasureBrick.children[tresIn].x){
 				rockTresIndex = tresIn;
@@ -119,20 +126,28 @@
 		if (rockTresIndex > -1){
 			nextElementRock = "treasureRight";
 		}
+		if (rockTresIndex == -1){
+			nextElementRock = "ground";
+		}
 	}
 	
 	function checkTresLeft(){
-		for (var tres = 0;tres<treasureBrick.children.length;tres++){
-			if ((treasureBrick.children[index].x - 10)<treasureBrick.children[tres].x + treasureBrick.children[tres].width){
-				tresIndex = tres;
+		treasureIndex = -1;
+		// for (var tres = tresIndex-1;tres>-1;tres--){
+			if ((treasureBrick.children[tresIndex].x - 10)<treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex-1].width){
+				treasureIndex = tresIndex;
 			}
-		}
-		if (tresIndex > -1){
+		// }
+		if (treasureIndex > -1){
 			nextElementRock = "treasureLeft";
+		}
+		if (treasureIndex == -1){
+			checkTresRockLeft();
 		}
 	}
 	
 	function checkTresRockLeft(){
+		tresRockIndex = -1;
 		for (var rockIn = 0;rockIn<rock.children.length;rockIn++){
 			if ((treasureBrick.children[tresIndex].x - 10) < rock.children[rockIn].x + rock.children[rockIn].width){
 				tresRockIndex = rockIn;
@@ -144,6 +159,7 @@
 	}
 	
 	function checkRockTresLeft(){
+		rockTresIndex = -1;
 		for (var tresIn = 0;tresIn<treasureBrick.children.length;tresIn++){
 			if ((rock.children[index].x - 10) < treasureBrick.children[tresIn].x + treasureBrick.children[tresIn].width){
 				rockTresIndex = tresIn;
@@ -152,17 +168,21 @@
 		if (rockTresIndex > -1){
 			nextElementRock = "treasureLeft";
 		}
+		if (rockTresIndex == -1){
+			nextElementRock = "ground";
+		}
+		
 	}
 	
 	function checkRockRight(){
 		if (index+1 < rock.children.length && index > -1){
 			if (rock.children[index+1].alive){
 				if ((rock.children[index].x + rock.children[index].width + 10)>rock.children[index+1].x){
-					nextElementRock = "rockRight";
+					nextRockIndex = index+1;
 				}
 			}
 			else{
-				nextElementRock = "ground";
+				checkRockTresRight();
 			}
 		}
 	}
@@ -175,7 +195,7 @@
 				}
 			}
 			else{
-				nextElementRock = "ground";
+				checkRockTresLeft();
 			}
 		}
 		

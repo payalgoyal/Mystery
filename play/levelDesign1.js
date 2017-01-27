@@ -324,11 +324,11 @@ var levelDesign1 = function(game){}
 			if(playerBaseLevel == "rock"){
 				if (move == "right"){
 					checkRockRight();
-					checkRockTresRight();
+					// checkRockTresRight();
 				}
 				if (move == "left"){
 					checkRockLeft();
-					checkRockTresLeft();
+					// checkRockTresLeft();
 				}
 				
 			}
@@ -336,11 +336,9 @@ var levelDesign1 = function(game){}
 			if(playerBaseLevel == "treasure"){
 				if (move == "right"){
 					checkTresRight();
-					checkTresRockRight();
 				}
 				if (move == "left"){
 					checkTresLeft();
-					checkTresRockLeft();
 				}
 				
 			}
