@@ -1,4 +1,5 @@
 	var my_media = null;
+	var witchPresent = -1;
 	
 	var playAudio = function(audioID) {
 		if (my_media != null){
@@ -24,6 +25,22 @@
 		 my_media.play();
 		// // $("#Plane").on("ended", playAudio("Plane"));
 	} 
+	
+	function checkWitchVisibility(){
+		witchPresent = -1;
+		for (var i=0;i<enemies.children.length;i++){
+			if (mysprite.x + 400 > enemies.children[i].x && mysprite.x + 150 < enemies.children[i].x){
+				witchPresent = i;
+			}
+		}
+		
+		if(witchPresent > -1){
+			witch.visible = true;
+		}
+		else{
+			witch.visible = false;
+		}
+	}
 	
 	function myspriteMysteryCollision(a,b){
 		levelCompletText = game.add.text(game.width/2.5,game.height/1.5,"Level Completed ",{

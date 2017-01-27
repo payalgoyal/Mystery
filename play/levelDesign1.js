@@ -38,6 +38,7 @@ var levelDesign1 = function(game){}
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);
 			game.load.image("nextLevel", "images/nextLevel.png");
+			game.load.image("witch", "images/witch.png");
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
 			
 		},
@@ -63,6 +64,11 @@ var levelDesign1 = function(game){}
 			// treasureHit = game.add.audio('treasureHit');
 			// enemyKill = game.add.audio('enemyKill');
 			// run = new Phaser.Sound(game,'run',1,true);
+			
+			witch = game.add.sprite(game.width/1.3,110,'witch');
+			witch.width = game.height/4;
+			witch.height = game.height/4;
+			witch.visible = false;
 			
 			steps1 = game.add.group();
 			steps1.enableBody = true;
@@ -292,6 +298,8 @@ var levelDesign1 = function(game){}
 			// if (mysprite.body.velocity.x == 0){
 				// my_media.stop();
 			// }
+			
+			checkWitchVisibility();		
 		
 			if (mysprite.energised == 1){
 				if (move == "right"){
