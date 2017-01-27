@@ -74,7 +74,7 @@ var levelDesign1 = function(game){}
 			
 			treasureBrick = game.add.group();
 			treasureBrick.enableBody = true;
-			treasureBrick.createMultiple(5,'treasureBrick');
+			treasureBrick.createMultiple(4,'treasureBrick');
 			
 			for (var i = 0;i < treasureBrick.children.length;i++){
 				treasureBrick.children[i].traversed = false;
