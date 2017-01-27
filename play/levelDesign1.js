@@ -410,7 +410,6 @@ var levelDesign1 = function(game){}
 				for (en=0;en<enemies.children.length;en++){
 					if (enemies.children[en].alive && mysprite.alive){
 						if((enemies.children[en].x-2 < mysprite.x + mysprite.width) && (enemies.children[en].y-2 < mysprite.y+mysprite.height) && enemies.children[en].x + enemies.children[en].width > mysprite.x + mysprite.width){
-							run.stop();
 							mysprite.body.velocity.x = 0;
 							mysprite.body.velocity.y = 0;
 							

@@ -211,7 +211,6 @@
 	
 	function myspriteEnemiesCollision(a,b){
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 0){
-			run.stop();
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
 			
@@ -261,7 +260,6 @@
 				b.body.velocity.x = 0;
 				b.body.immovable = true;
 				b.body.moves = false;
-				run.stop();
 				mysprite.body.velocity.x = 0;
 				playerBaseLevel = "ground";
 				stopScene();
@@ -273,7 +271,6 @@
 			mysprite.body.velocity.y = 0;
 			b.body.velocity.y = 0;
 			mysprite.body.gravity.y = 0;
-			run.stop();
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
 			upButton.pressed = "false";
@@ -343,7 +340,6 @@
 		collision = 1;
 		if (b.body.facing == 1
 			|| b.body.facing == 2){
-				run.stop();
 				mysprite.body.velocity.x = 0;
 				b.body.immovable = true;
 				b.body.moves = false;
@@ -353,7 +349,6 @@
 		}
 		if (b.body.facing == 3 || b.body.touching.down){
 			b.visible = false;
-			
 			breakingBrick = game.add.sprite(b.x,b.y-10,'breakingBrick');
 			playAudio("brickBreaking");
 			b.kill();
@@ -371,7 +366,6 @@
 			rockCol = 4;
 			mysprite.body.y = b.body.y - mysprite.height - 2;
 			mysprite.body.gravity.y = 0;
-			run.stop();
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
 			b.body.velocity.y = 0;
@@ -411,7 +405,6 @@
 	
 	function treasurePoint(treasureIndex){
 		if(!treasureBrick.children[treasureIndex].traversed){
-			run.stop();
 			if (treasureBrick.children[treasureIndex].power == undefined){
 				treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
 				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
@@ -443,7 +436,6 @@
 		collision = 1;
 		if (b.body.facing == 1 || b.body.touching.left
 			|| b.body.facing == 2 || b.body.touching.right){
-				run.stop();
 				mysprite.body.velocity.x = 0;
 				b.body.velocity.y = 0;
 				b.body.velocity.x = 0;
@@ -466,7 +458,6 @@
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
 			mysprite.body.y = b.body.y - mysprite.height - 2;
-			run.stop();
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
@@ -515,7 +506,6 @@
 			steps2.children[steps1Index].body.moves = false;
 			
 			// if (move == "stopRight"){
-				run.stop();
 				mysprite.body.velocity.x = 0;
 			// }
 			stopScene();
@@ -524,7 +514,6 @@
 		//top collision
 		if (b.body.facing == 4){
 			mysprite.body.y = b.body.y - b.body.height;
-			run.stop();
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
@@ -553,7 +542,6 @@
 			steps1.children[steps2Index].body.moves = false;
 			
 			// if (move == "stopRight"){
-				run.stop();
 				mysprite.body.velocity.x = 0;
 			// }
 			
@@ -564,7 +552,6 @@
 		if (b.body.facing == 4){
 			mysprite.body.y = b.body.y - b.body.height;
 			b.body.velocity.y = 0;
-			run.stop();
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
 			mysprite.body.velocity.y = 0;
@@ -743,7 +730,6 @@
 					else{
 						mysprite.y = steps1.children[stepsColIndex].y - mysprite.height;
 						// mysprite.body.gravity.y = 0;
-						run.stop();
 						mysprite.body.gravity.y = 0;
 						mysprite.body.velocity.x = 0;
 						mysprite.body.velocity.y = 0;
@@ -813,7 +799,6 @@
 							mysprite.y = steps2.children[stepsInd].y - mysprite.height;
 							steps2.children[stepsInd].body.velocity.y = 0;
 							mysprite.body.gravity.y = 0;
-							run.stop();
 							mysprite.body.velocity.x = 0;
 							mysprite.body.velocity.y = 0;
 							upButton.pressed = "false";
@@ -823,7 +808,6 @@
 						else if (((steps2.children[stepsInd].x + steps2.children[stepsInd].width) > mysprite.x) && (steps2.children[stepsInd].x > (mysprite.x + (mysprite.width/2)))){
 							mysprite.y = steps1.children[stepsInd].y - mysprite.height;
 							mysprite.body.gravity.y = 0;
-							run.stop();
 							mysprite.body.velocity.x = 0;
 							mysprite.body.velocity.y = 0;
 							upButton.pressed = "false";
@@ -854,7 +838,6 @@
 	}
 	
 	function jumpPlayerRight(){
-		run.stop();
 		jumpRight = "true";
 		mysprite.body.velocity.x = 100;
 		mysprite.body.gravity.y = 100;
@@ -862,7 +845,6 @@
 			if ((ground.y < mysprite.y+mysprite.height) ){
 				mysprite.body.velocity.y = 0;
 				mysprite.body.gravity.y = 0;
-				run.stop();
 				mysprite.body.velocity.x = 0;
 			}
 			checkCollision();
@@ -870,7 +852,6 @@
 	}
 	
 	function jumpPlayerLeft(){
-		run.stop();
 		jumpLeft = "true";
 		mysprite.body.velocity.x = -100;
 		mysprite.body.gravity.y = 100;
@@ -878,7 +859,6 @@
 			if ((ground.y < mysprite.y+mysprite.height) ){
 				mysprite.body.velocity.y = 0;
 				mysprite.body.gravity.y = 0;
-				run.stop();
 				mysprite.body.velocity.x = 0;
 			}
 			checkCollision();
@@ -896,7 +876,6 @@
 						mysprite.y = treasureBrick.children[ind].y - mysprite.height - 2;
 						tresIndex = ind;
 						mysprite.body.gravity.y = 0;
-						run.stop();
 						mysprite.body.velocity.x = 0;
 						mysprite.body.velocity.y = 0;
 						treasureBrick.children[ind].body.immovable = true;
@@ -925,7 +904,6 @@
 						mysprite.y = rock.children[ind].y - mysprite.height - 2;
 						index = ind;
 						mysprite.body.gravity.y = 0;
-						run.stop();
 						mysprite.body.velocity.x = 0;
 						mysprite.body.velocity.y = 0;
 						rock.children[ind].body.immovable = true;
@@ -952,7 +930,6 @@
 				tubeIndex = tub;
 				tubes.children[tub].body.velocity.y = 0;
 				mysprite.body.gravity.y = 0;
-				run.stop();
 				mysprite.body.velocity.x = 0;
 				mysprite.body.velocity.y = 0;
 				upButton.pressed = "false";
@@ -1031,7 +1008,6 @@
 							else if ((((steps2.children[stepsInd].x + steps2.children[stepsInd].width) > mysprite.x) && (steps2.children[stepsInd].x > (mysprite.x+mysprite.width))) && (steps1.children[stepsInd].x < (mysprite.x + mysprite.width))){
 								mysprite.y = steps1.children[stepsInd].y - mysprite.height;
 								mysprite.body.gravity.y = 0;
-								run.stop();
 								mysprite.body.velocity.x = 0;
 								mysprite.body.velocity.y = 0;
 								upButton.pressed = "false";
