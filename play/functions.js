@@ -399,7 +399,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		// playAudio("energy");
+		playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -576,11 +576,11 @@
 		}
 		
 		if (collision == 0){
+			mysprite.body.velocity.x = 100;
 			rightButton.pressed = "true";
 			mysprite.animations.play('right');
 			move = "right";
 			playAudio("walk");
-			mysprite.body.velocity.x = 100;
 		}
 		
 	}
@@ -877,8 +877,8 @@
 						mysprite.y = treasureBrick.children[ind].y - mysprite.height - 2;
 						tresIndex = ind;
 						mysprite.body.gravity.y = 0;
-						mysprite.body.velocity.x = 0;
-						mysprite.body.velocity.y = 0;
+						// mysprite.body.velocity.x = 0;
+						// mysprite.body.velocity.y = 0;
 						treasureBrick.children[ind].body.immovable = true;
 						treasureBrick.children[ind].body.moves = false;
 						treasureBrick.children[ind].body.velocity.y = 0;

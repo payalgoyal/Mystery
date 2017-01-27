@@ -76,11 +76,15 @@ var levelDesign1 = function(game){}
 			treasureBrick.enableBody = true;
 			treasureBrick.createMultiple(5,'treasureBrick');
 			
+			for (var i = 0;i < treasureBrick.children.length;i++){
+				treasureBrick.children[i].traversed = false;
+			}
+			
 			rock = game.add.group();
 			rock.enableBody = true;
 			rock.createMultiple(16, 'rock');
 			
-			for (var i =0;i<16;i++){
+			for (var i =0;i<rock.children.length;i++){
 				rock.children[i].body.velocity.y = 0;
 				rock.children[i].body.gravity = 0;
 			}
