@@ -399,7 +399,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		playAudio("energy");
+		// playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -408,9 +408,9 @@
 			if (treasureBrick.children[treasureIndex].power == undefined){
 				treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
 				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
+				playAudio("coinCollect");
 				treasureCoin.animations.play('spin');
 				setTimeout(function(){
-					playAudio("coinCollect");
 					treasureCoin.animations.stop();
 					treasureCoin.kill();
 				},150);
