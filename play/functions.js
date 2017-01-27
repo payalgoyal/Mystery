@@ -32,6 +32,7 @@
 		levelCompletText.fixedToCamera = true;
 		maxLevel = localStorage.getItem("maxLevel")==null?2:localStorage.getItem("maxLevel");
 		localStorage.setItem("levelCompleted",Math.max(2,maxLevel));
+		nextLevel.visible = true;
 		nextLevel.inputEnabled = true;
 		rightButton.inputEnabled = false;
 		leftButton.inputEnabled = false;
