@@ -56,13 +56,13 @@ var levelDesign1 = function(game){}
 			princess.width = 120;
 			princess.height = 120;
 			
-			jump = game.add.audio('jump');
-			brickBreaking = game.add.audio('brickBreaking');
-			coinCollect = game.add.audio('coinCollect');
-			energy = game.add.audio('energy');
-			treasureHit = game.add.audio('treasureHit');
-			enemyKill = game.add.audio('enemyKill');
-			run = new Phaser.Sound(game,'run',1,true);
+			// jump = game.add.audio('jump');
+			// brickBreaking = game.add.audio('brickBreaking');
+			// coinCollect = game.add.audio('coinCollect');
+			// energy = game.add.audio('energy');
+			// treasureHit = game.add.audio('treasureHit');
+			// enemyKill = game.add.audio('enemyKill');
+			// run = new Phaser.Sound(game,'run',1,true);
 			
 			steps1 = game.add.group();
 			steps1.enableBody = true;
