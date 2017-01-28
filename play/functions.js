@@ -27,7 +27,6 @@
 	} 
 	
 	function checkWitchVisibility(){
-		witchPresent = -1;
 		for (var i=0;i<enemies.children.length;i++){
 			if (enemies.children[i].x - mysprite.x > 50 && enemies.children[i].x - mysprite.x < 350){
 				witchPresent = i;
@@ -39,6 +38,7 @@
 		}
 		else{
 			witch.visible = false;
+			witchPresent = -1;
 		}
 	}
 	
