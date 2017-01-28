@@ -65,7 +65,7 @@ var levelDesign1 = function(game){}
 			// enemyKill = game.add.audio('enemyKill');
 			// run = new Phaser.Sound(game,'run',1,true);
 			
-			witch = game.add.sprite(game.width/1.3,110,'witch');
+			witch = game.add.sprite(200,110,'witch');
 			witch.width = game.height/4;
 			witch.height = game.height/4;
 			witch.visible = false;
