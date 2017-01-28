@@ -429,7 +429,7 @@ var levelDesign1 = function(game){}
 							enemies.children[en].body.gravity.y = 0;
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
-							playAudio("enemyKilled");
+							// playAudio("enemyKilled");
 							enemies.children[en].kill();
 							setTimeout(function(){
 								enemyDyin.kill();

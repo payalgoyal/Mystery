@@ -27,6 +27,7 @@
 	} 
 	
 	function checkWitchVisibility(){
+		witchPresent = -1;
 		for (var i=0;i<enemies.children.length;i++){
 			if (enemies.children[i].x - mysprite.x > 50 && enemies.children[i].x - mysprite.x < 350){
 				witchPresent = i;
@@ -34,11 +35,13 @@
 		}
 		
 		if(witchPresent > -1){
+			witch.x = mysprite.x + 200;
+			witch.y = game.height/6;
 			witch.visible = true;
+			
 		}
 		else{
 			witch.visible = false;
-			witchPresent = -1;
 		}
 	}
 	
@@ -448,12 +451,13 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		// playAudio("energy");
+		playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
 	function treasurePoint(treasureIndex){
 		if(!treasureBrick.children[treasureIndex].traversed){
+			playAudio("brickBreaking");
 			if (treasureBrick.children[treasureIndex].power == undefined){
 				treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
 				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
@@ -503,7 +507,6 @@
 			b.body.velocity.x = 0;
 			b.body.gravity.y = 0;
 			playerBaseLevel = "ground";
-			playAudio("brickBreaking");
 			treasurePoint(b.parent.getIndex(b));
 		}
 		if (b.body.facing == 4 || b.body.touching.up){
