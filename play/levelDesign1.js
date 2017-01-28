@@ -292,7 +292,7 @@ var levelDesign1 = function(game){}
 			game.camera.follow(mysprite);
 		},
 		update: function() { 
-			if (mysprite.y  > game.height/1.75 - 7){
+			if (mysprite.y  > game.height/1.75 + 7){
 				mysprite.y = game.height/1.75;
 			}
 			// if (mysprite.body.velocity.x == 0){

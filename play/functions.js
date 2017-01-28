@@ -18,7 +18,8 @@
 			my_media = new Media(url, null, null, loop); 
 		}
 		else{
-			my_media = new Media(url, null, null); 
+			// my_media = new Media(url, null, null); 
+			my_media = new Audio(url);
 		}
 		
 			   // // // Play audio
@@ -1029,7 +1030,7 @@
 			mysprite.body.velocity.y = -80;
 			mysprite.body.velocity.x = 0;
 			stopScene();
-			playAudio("jump");
+			// playAudio("jump");
 				
 			setTimeout(function(){
 				pos = "down";

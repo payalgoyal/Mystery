@@ -50,7 +50,7 @@
    }
    
 	function levelNo1(){
-		playAudio("levelClicked");
+		// playAudio("levelClicked");
 		game.state.add("LevelDesign1",levelDesign1);
 		game.state.start("LevelDesign1");
 	}
