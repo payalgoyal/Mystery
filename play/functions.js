@@ -451,7 +451,7 @@
 	
 	function myspriteEnergyCollision(){
 		energyBottle.kill();
-		playAudio("energyReceived");
+		playAudio("energy");
 		mysprite.energised = 1;
 	}
 	
@@ -461,7 +461,7 @@
 			if (treasureBrick.children[treasureIndex].power == undefined){
 				treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
 				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
-				playAudio("coinCollected");
+				playAudio("coinCollect");
 				treasureCoin.animations.play('spin');
 				setTimeout(function(){
 					treasureCoin.animations.stop();
@@ -527,7 +527,7 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			playAudio("coinCollected");
+			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 			// rockCollision();
@@ -1005,7 +1005,7 @@
 					
 					enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 					mysprite.y = enemyDyin.y - mysprite.height;
-					playAudio("enemyKill");
+					playAudio("enemyKilled");
 					enemies.children[en].kill();
 					setTimeout(function(){
 						enemyDyin.kill();

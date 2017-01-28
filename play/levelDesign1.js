@@ -57,13 +57,13 @@ var levelDesign1 = function(game){}
 			princess.width = 120;
 			princess.height = 120;
 			
-			jump = game.add.audio('jump');
-			brickBreaking = game.add.audio('brickBreaking');
-			coinCollect = game.add.audio('coinCollect');
-			energy = game.add.audio('energy');
-			treasureHit = game.add.audio('treasureHit');
-			enemyKill = game.add.audio('enemyKill');
-			run = new Phaser.Sound(game,'run',1,true);
+			// jump = game.add.audio('jump');
+			// brickBreaking = game.add.audio('brickBreaking');
+			// coinCollect = game.add.audio('coinCollect');
+			// energy = game.add.audio('energy');
+			// treasureHit = game.add.audio('treasureHit');
+			// enemyKill = game.add.audio('enemyKill');
+			// run = new Phaser.Sound(game,'run',1,true);
 			
 			witch = game.add.sprite(200,110,'witch');
 			witch.width = game.height/4;
@@ -292,7 +292,7 @@ var levelDesign1 = function(game){}
 			game.camera.follow(mysprite);
 		},
 		update: function() { 
-			if (mysprite.y  > game.height/1.75 - 7){
+			if (mysprite.y  > game.height/1.75 - 2){
 				mysprite.y = game.height/1.75;
 			}
 			// if (mysprite.body.velocity.x == 0){
@@ -429,7 +429,7 @@ var levelDesign1 = function(game){}
 							enemies.children[en].body.gravity.y = 0;
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
-							playAudio("enemyKill");
+							// playAudio("enemyKilled");
 							enemies.children[en].kill();
 							setTimeout(function(){
 								enemyDyin.kill();
