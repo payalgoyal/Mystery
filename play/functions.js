@@ -3,7 +3,7 @@
 	
 	var playAudio = function(audioID) {
 		if (my_media != null){
-			my_media.stop();
+			my_media.pause();
 		}
 		var audioElement = document.getElementById(audioID);
 		var url = audioElement.getAttribute('src');
@@ -18,7 +18,8 @@
 			my_media = new Media(url, null, null, loop); 
 		}
 		else{
-			my_media = new Media(url, null, null); 
+			// my_media = new Media(url, null, null); 
+			my_media = new Audio(url);
 		}
 		
 			   // // // Play audio
@@ -268,7 +269,7 @@
 			
 			mysprite.height = b.height/1.5;
 			mysprite.y = b.y + b.height/3;
-			my_media.stop();
+			// my_media.stop();
 			setTimeout(function(){
 				mysprite.height = b.height/2.5;
 				mysprite.width = mysprite.width * 1.2;
@@ -1051,7 +1052,7 @@
 								mysprite.y = steps2.children[stepsInd].y - mysprite.height;
 								steps2.children[stepsInd].body.velocity.y = 0;
 								mysprite.body.gravity.y = 0;
-								my_media.stop();
+								// my_media.stop();
 								mysprite.body.velocity.x = 0;
 								mysprite.body.velocity.y = 0;
 								upButton.pressed = "false";
