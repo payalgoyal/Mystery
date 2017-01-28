@@ -249,9 +249,9 @@ var levelDesign1 = function(game){}
 			obstructs.push(rock);
 			obstructs.push(steps1);
 			
-			rightButton = game.add.button(game.camera.view.width/2,game.camera.view.height-30,'rightArrow');
+			rightButton = game.add.button(game.camera.view.width/2,game.camera.view.height-50,'rightArrow');
 			rightButton.fixedToCamera = true;
-			leftButton = game.add.button(game.camera.view.width/3.5,game.camera.view.height-30,'leftArrow');
+			leftButton = game.add.button(game.camera.view.width/3.5,game.camera.view.height-50,'leftArrow');
 			leftButton.fixedToCamera = true;
 			upButton = game.add.button(game.camera.view.width/2.6,game.camera.view.height-90,'upArrow');
 			upButton.fixedToCamera = true;
