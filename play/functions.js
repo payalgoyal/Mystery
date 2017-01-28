@@ -18,8 +18,8 @@
 			my_media = new Media(url, null, null, loop); 
 		}
 		else{
-			// my_media = new Media(url, null, null); 
-			my_media = new Audio(url);
+			my_media = new Media(url, null, null); 
+			// my_media = new Audio(url);
 		}
 		
 			   // // // Play audio
