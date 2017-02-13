@@ -302,7 +302,7 @@
 			
 			mysprite.height = b.height/1.5;
 			mysprite.y = b.y + b.height/3;
-			remLives = remLives - 1;
+			// remLives = remLives - 1;
 			// my_media.stop();
 			setTimeout(function(){
 				mysprite.height = b.height/2.5;
@@ -320,9 +320,7 @@
 					}, 100);
 				} , 200);
 			} , 200);
-			
-			
-			
+		
 			stopScene();
 		}
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 1){
@@ -1106,7 +1104,7 @@
 								playerBaseLevel = "steps1";
 							}
 							else{
-								
+								checkPit();
 							}
 						}				
 					}
