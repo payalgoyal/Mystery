@@ -26,6 +26,8 @@ var tresCheck = 0;
 var coinsCollected = 0;
 var jumpCount = 0;
 var move = "stand";
+var livesDeducted = false;
+var pitFall = false;
 
 var playerProperties = {
   velocity: 300,
@@ -39,10 +41,14 @@ var levelDesign1 = function(game){}
 			game.scale.setScreenSize(true);
 			game.load.image("nextLevel", "images/nextLevel.png");
 			game.load.image("witch", "images/witch.png");
+			game.load.image("heart", "images/lives.png");
+			game.load.image("pit", "images/pit.png");
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
 			
 		},
 		create: function() { 
+			// remLives = remLives - 1;
+			pitFall = false;
 			game.world.setBounds(0,0,20000,0);
 			
 			cloud = game.add.tileSprite(0, 0,20000,500, 'cloud');
@@ -51,6 +57,9 @@ var levelDesign1 = function(game){}
 			
 			fence = game.add.tileSprite(0,279,20000,45,"fence");
 			grass = game.add.tileSprite(0, game.height/1.55, 20000, 15, "grass");
+			
+			pit = game.add.sprite(400,279,'pit');
+			pit.height = 200;
 			
 			targetBox = game.add.sprite(9170,game.height/1.55-50,'targetBox');
 			princess = game.add.sprite(9200,game.height/1.55-110,'princess');
@@ -80,11 +89,11 @@ var levelDesign1 = function(game){}
 			
 			treasureBrick = game.add.group();
 			treasureBrick.enableBody = true;
-			treasureBrick.createMultiple(4,'treasureBrick');
+			treasureBrick.createMultiple(5,'treasureBrick');
 			
-			for (var i = 0;i < treasureBrick.children.length;i++){
-				treasureBrick.children[i].traversed = false;
-			}
+			// for (var i = 0;i < treasureBrick.children.length;i++){
+				// treasureBrick.children[i].traversed = 3;
+			// }
 			
 			rock = game.add.group();
 			rock.enableBody = true;
@@ -132,11 +141,14 @@ var levelDesign1 = function(game){}
 			mysprite.frame=4;
 			mysprite.energised = 0;
 			mysprite.checkWorldBounds = true;
+			mysprite.visible = true;
+			// livesDeducted = false;
 			
 			rock.children[0].reset(856, game.height/2.65);
 			rock.children[0].edgeLeft = true;
 			treasureBrick.children[0].reset(896,game.height/2.65);
 			treasureBrick.children[0].power = 1;
+			treasureBrick.children[0].traversed = false;
 			rock.children[1].reset(936, game.height/2.65);
 			rock.children[1].edgeRight = true;
 			
@@ -187,8 +199,10 @@ var levelDesign1 = function(game){}
 			
 			treasureBrick.children[1].reset(3200,game.height/2.65);
 			treasureBrick.children[1].edgeLeft = true;
+			treasureBrick.children[1].traversed = 3;
 			treasureBrick.children[2].reset(3240,game.height/2.65);
 			treasureBrick.children[2].edgeRight = true;
+			treasureBrick.children[2].traversed = 3;
 			
 			tubes.children[1].reset(3730,game.height/1.9);
 			tubes.children[2].reset(3900,game.height/1.9);
@@ -201,6 +215,7 @@ var levelDesign1 = function(game){}
 			treasureBrick.children[3].reset(4420,game.height/6);
 			treasureBrick.children[3].edgeLeft = true;
 			treasureBrick.children[3].edgeRight = true;
+			treasureBrick.children[3].traversed = 3;
 			
 			coins.children[11].reset(4620,150);
 			coins.children[11].animations.add('spin',[0,1,2,3],10,true);
@@ -218,8 +233,9 @@ var levelDesign1 = function(game){}
 			rock.children[11].reset(5840, game.height/2.65);
 			rock.children[11].edgeRight = true;
 			
-			treasureBrick.children[3].reset(5800,game.height/6);
-			treasureBrick.children[3].edgeLeft = true;
+			treasureBrick.children[4].reset(5800,game.height/6);
+			treasureBrick.children[4].edgeLeft = true;
+			treasureBrick.children[4].traversed = 3;
 			rock.children[12].reset(5840, game.height/6);
 			rock.children[12].edgeRight = true;
 			
@@ -265,10 +281,20 @@ var levelDesign1 = function(game){}
 			leftButton.pressed = "false";
 			upButton.pressed = "false";
 			
-			coinsText = game.add.text(150,10,"Coins - ",{
-				font:"bold 16px Arial", fill: "red" 
+			coinsText = game.add.text(game.width/1.5,10,"Coins Collected - ",{
+				font:"bold 24px Arial", fill: "red" 
 			});
 			coinsText.fixedToCamera = true;
+			
+			livesText = game.add.text(10,10,"Remaining Lives - ",{
+				font:"bold 24px Arial", fill: "red" 
+			});
+			livesText.fixedToCamera = true;
+			for (var l =0;l<remLives;l++){
+				heart = game.add.sprite(livesText.width+10+l*35,10,'heart');
+				heart.fixedToCamera = true;
+			}
+			
 			
 			mysprite.animations.add('left',[0,1,2,3],10,true);
 			mysprite.animations.add('right',[5,6,7,8],10,true);
@@ -292,14 +318,16 @@ var levelDesign1 = function(game){}
 			game.camera.follow(mysprite);
 		},
 		update: function() { 
-			if (mysprite.y  > game.height/1.75 + 5){
+			if (mysprite.y  > game.height/1.75 + 5 && !pitFall){
 				mysprite.y = game.height/1.75;
 			}
 			// if (mysprite.body.velocity.x == 0){
 				// my_media.stop();
 			// }
 			
-			checkWitchVisibility();		
+			checkWitchVisibility();	
+			
+			checkPit();
 		
 			if (mysprite.energised == 1){
 				if (move == "right"){

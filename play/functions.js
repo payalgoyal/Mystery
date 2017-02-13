@@ -1,5 +1,6 @@
 	var my_media = null;
 	var witchPresent = -1;
+	var treasureBrickTraversed = [];
 	
 	var playAudio = function(audioID) {
 		if (my_media != null){
@@ -26,6 +27,21 @@
 		 my_media.play();
 		// // $("#Plane").on("ended", playAudio("Plane"));
 	} 
+	
+	function checkPit(){
+		if ((mysprite.x > pit.x && mysprite.x+mysprite.width < pit.x+pit.width && mysprite.y > pit.y) ){
+			mysprite.animations.stop();
+			pitFall = true;
+			mysprite.body.velocity.y = 60;
+			mysprite.body.velocity.x = 0;
+			// setTimeout(function(){
+				// mysprite.visible = false;
+			setTimeout(function(){
+				checkLives();
+			 }, 800);
+			// }, 500);
+		}
+	}
 	
 	function checkWitchVisibility(){
 		witchPresent = -1;
@@ -262,6 +278,23 @@
 		enemies.children[enemyIndex].body.velocity.x = enemies.children[enemyIndex].vel;
 	}
 	
+	function checkLives(){
+		if (!mysprite.visible && livesDeducted == false || pitFall == true){
+			remLives = remLives - 1;
+			livesDeducted = true;
+			pitFall = false;
+			if(remLives == 0){
+				gameOverText = game.add.text(game.width/2.3,game.height/1.7,"Game Over",{
+					font:"bold 40px Arial", fill: "red" 
+				});
+			}
+			else{
+				game.state.add("LevelDesign1",levelDesign1);
+				game.state.start("LevelDesign1");
+			}
+		}
+	}
+	
 	function myspriteEnemiesCollision(a,b){
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2) && b.alive && a.energised == 0){
 			mysprite.body.velocity.x = 0;
@@ -269,23 +302,26 @@
 			
 			mysprite.height = b.height/1.5;
 			mysprite.y = b.y + b.height/3;
+			remLives = remLives - 1;
 			// my_media.stop();
 			setTimeout(function(){
 				mysprite.height = b.height/2.5;
 				mysprite.width = mysprite.width * 1.2;
 				mysprite.body.velocity.x = 0;
+				setTimeout(function(){
+					mysprite.width = mysprite.width * 1.5;
+					mysprite.height = b.height/3.5;
+					mysprite.body.velocity.x = 0;
+					setTimeout(function(){
+						mysprite.visible = false;
+						setTimeout(function(){
+							checkLives();
+						}, 400);
+					}, 100);
+				} , 200);
 			} , 200);
-			setTimeout(function(){
-				mysprite.width = mysprite.width * 1.5;
-				mysprite.height = b.height/3.5;
-				mysprite.body.velocity.x = 0;
-			} , 200);
-			setTimeout(function(){
-				mysprite.kill();
-				gameOverText = game.add.text(game.width/2.3,game.height/1.7,"Game Over",{
-				font:"bold 40px Arial", fill: "red" 
-			});
-			}, 400);
+			
+			
 			
 			stopScene();
 		}
@@ -457,26 +493,28 @@
 	}
 	
 	function treasurePoint(treasureIndex){
-		if(!treasureBrick.children[treasureIndex].traversed){
+		if (treasureBrickTraversed[treasureIndex] == undefined){
+			treasureBrickTraversed[treasureIndex] = 0;
+		}
+		// if(!treasureBrick.children[treasureIndex].traversed){
 			playAudio("brickBreaking");
-			if (treasureBrick.children[treasureIndex].power == undefined){
-				treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
-				treasureCoin.animations.add('spin',[0,1,2,3],30,true);
-				playAudio("coinCollect");
-				treasureCoin.animations.play('spin');
-				setTimeout(function(){
-					treasureCoin.animations.stop();
-					treasureCoin.kill();
-				},150);
-				coinsText.text = "Coins - " + ++coinsCollected;
+			if (treasureBrick.children[treasureIndex].power == undefined && treasureBrickTraversed[treasureIndex] < treasureBrick.children[treasureIndex].traversed){
+			treasureBrickTraversed[treasureIndex] = treasureBrickTraversed[treasureIndex]+1;
+			treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
+			treasureCoin.animations.add('spin',[0,1,2,3],30,true);
+			playAudio("coinCollect");
+			treasureCoin.animations.play('spin');
+			setTimeout(function(){
+				treasureCoin.animations.stop();
+				treasureCoin.kill();
+			},150);
+			coinsText.text = "Coins - " + ++coinsCollected;
 			}
-			if (treasureBrick.children[treasureIndex].power == 1){
+			if (treasureBrick.children[treasureIndex].power == 1 && !treasureBrick.children[treasureIndex].traversed){
 				energyBottle = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-30,'energyBottle');
 				game.physics.enable(energyBottle, Phaser.Physics.ARCADE);
-			}
-			
-			treasureBrick.children[treasureIndex].traversed = true;
-		}
+				treasureBrick.children[treasureIndex].traversed = true;
+			}	
 	}
 	
 	function myspriteTreasureCollision(a,b){
@@ -1021,7 +1059,7 @@
 	}
   
 	function jumpPlayer(){
-		if (mysprite.y > 80){
+		if (mysprite.y > 80 && mysprite.body.velocity.y <= 0){
 			jumpCount++;
 			upButton.pressed = "true";
 			pos = "up";

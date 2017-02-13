@@ -75,9 +75,9 @@ var levelDesign2 = function(game){}
 			treasureBrick.enableBody = true;
 			treasureBrick.createMultiple(5,'treasureBrick');
 			
-			for (var i = 0;i < treasureBrick.children.length;i++){
-				treasureBrick.children[i].traversed = false;
-			}
+			// for (var i = 0;i < treasureBrick.children.length;i++){
+				// treasureBrick.children[i].traversed = 3;
+			// }
 			
 			rock = game.add.group();
 			rock.enableBody = true;
@@ -166,10 +166,14 @@ var levelDesign2 = function(game){}
 			coins.children[10].reset(2880,150);
 			coins.children[10].animations.add('spin',[0,1,2,3],10,true);	
 			
-			treasureBrick.children[1].reset(3200,game.height/2.65);
-			treasureBrick.children[1].edgeLeft = true;
-			treasureBrick.children[2].reset(3240,game.height/2.65);
+			treasureBrick.children[0].reset(3200,game.height/2.65);
+			treasureBrick.children[0].edgeLeft = true;
+			treasureBrick.children[0].traversed = 3;
+			treasureBrick.children[1].reset(3240,game.height/2.65);
+			treasureBrick.children[1].traversed = 3;
+			treasureBrick.children[2].reset(3280,game.height/2.65);
 			treasureBrick.children[2].edgeRight = true;
+			treasureBrick.children[2].traversed = 3;
 			
 			tubes.children[1].reset(3730,game.height/1.9);
 			tubes.children[2].reset(3900,game.height/1.9);
@@ -191,6 +195,7 @@ var levelDesign2 = function(game){}
 			treasureBrick.children[3].reset(5420,game.height/6);
 			treasureBrick.children[3].edgeLeft = true;
 			treasureBrick.children[3].edgeRight = true;
+			treasureBrick.children[3].traversed = 3;
 			
 			coins.children[11].reset(6620,150);
 			coins.children[11].animations.add('spin',[0,1,2,3],10,true);
@@ -210,8 +215,9 @@ var levelDesign2 = function(game){}
 			rock.children[11].reset(9840, game.height/2.65);
 			rock.children[11].edgeRight = true;
 			
-			treasureBrick.children[3].reset(11800,game.height/6);
-			treasureBrick.children[3].edgeLeft = true;
+			treasureBrick.children[4].reset(11800,game.height/6);
+			treasureBrick.children[4].edgeLeft = true;
+			treasureBrick.children[4].traversed = 3;
 			rock.children[12].reset(11840, game.height/6);
 			rock.children[12].edgeRight = true;
 			
