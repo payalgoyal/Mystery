@@ -29,7 +29,7 @@
 	} 
 	
 	function checkPit(){
-		if ((mysprite.x > pit.x && mysprite.x+mysprite.width < pit.x+pit.width && mysprite.y > pit.y) ){
+		if ((mysprite.x > pit.x && mysprite.x+mysprite.width < pit.x+pit.width && mysprite.y+mysprite.height+2 > pit.y) ){
 			mysprite.animations.stop();
 			pitFall = true;
 			mysprite.body.velocity.y = 60;
