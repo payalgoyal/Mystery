@@ -11,6 +11,9 @@
 			game.scale.setScreenSize(true);
 			
 			game.load.image("levelsBg", "images/levelsBg.png");
+			game.load.image("levelsLand", "images/levelLand.png");
+			game.load.image("ocean", "images/ocean.jpg");
+			game.load.image("boat", "images/boat.png");
 			game.load.spritesheet("coinsSprite", "images/coinSprite.png",40,39);
 			game.load.spritesheet("rightSprite", "images/dude.png",32,48);
 			
@@ -18,27 +21,37 @@
 
 		// Fuction called after 'preload' to setup the game 
 		create: function() { 
+			ocean = game.add.sprite(0,0,'ocean');
+			ocean.width = game.width;
+			ocean.height = game.height;
+			levelButtons[0] = game.add.button(150,100,"levelsLand");
 			
-			levelButtons[0] = game.add.button(150,100,"levelsBg");
-			textOnButton = game.add.text(levelButtons[0].x+levelButtons[0].width/3,levelButtons[0].y+levelButtons[0].height/3,1,{
-				font:"bold 16px Arial", fill: "white" 
-			});
 			levelButtons[0].onInputDown.add(levelNo1);
 			
 			levelCompleted = localStorage.getItem("levelCompleted")==null?1:localStorage.getItem("levelCompleted");
 			
-			levelButtons[1] = game.add.button(250,100,"levelsBg");
-			textOnButton = game.add.text(levelButtons[1].x+levelButtons[1].width/3,levelButtons[1].y+levelButtons[1].height/3,2,{
-				font:"bold 16px Arial", fill: "white" 
-			});
+			levelButtons[1] = game.add.button(250,100,"levelsLand");
+			
 			levelButtons[1].onInputDown.add(levelNo2);
 			
-			for (var i = 0;i< maxLevel;i++){
+			for (var land=0;land<levelButtons.length;land++){
+				levelButtons[land].width = 70;
+				levelButtons[land].height = 50;	
+				textOnButton = game.add.text(levelButtons[land].x+levelButtons[land].width/3,levelButtons[land].y+levelButtons[land].height/3,land+1,{
+					font:"bold 16px Arial", fill: "white" 
+				});
+			}
+			
+			for (var i = 0;i< levelCompleted;i++){
 				levelButtons[i].inputEnabled = true;
 			}
-			for (var j = maxLevel;j< levelButtons.length;j++){
+			for (var j = levelCompleted;j< levelButtons.length;j++){
 				levelButtons[j].inputEnabled = false;
 			}
+			
+			boat = game.add.sprite(levelButtons[levelCompleted-1].x+40,levelButtons[levelCompleted-1].y+20,'boat');
+			boat.width = 40;
+			boat.height = 40;
 			
 		},
 
