@@ -29,18 +29,21 @@
 	} 
 	
 	function checkPit(){
-		if ((mysprite.x > pit.x && mysprite.x+mysprite.width < pit.x+pit.width && mysprite.y+mysprite.height+2 > pit.y) ){
-			mysprite.animations.stop();
-			pitFall = true;
-			mysprite.body.velocity.y = 60;
-			mysprite.body.velocity.x = 0;
-			// setTimeout(function(){
-				// mysprite.visible = false;
-			setTimeout(function(){
-				checkLives();
-			 }, 800);
-			// }, 500);
+		for (var p =0;p<pits.children.length;p++){
+			if ((mysprite.x > pits.children[p].x && mysprite.x+mysprite.width < pits.children[p].x+pits.children[p].width && mysprite.y+mysprite.height+2 > pits.children[p].y) ){
+				mysprite.animations.stop();
+				pitFall = true;
+				mysprite.body.velocity.y = 60;
+				mysprite.body.velocity.x = 0;
+				// setTimeout(function(){
+					// mysprite.visible = false;
+				setTimeout(function(){
+					checkLives();
+				 }, 800);
+				// }, 500);
+			}
 		}
+		
 	}
 	
 	function checkWitchVisibility(){
@@ -63,31 +66,8 @@
 	}
 	
 	function myspriteMysteryCollision(a,b){
-		levelCompletText = game.add.text(game.width/2.5,game.height/1.5,"Level Completed ",{
-				font:"bold 16px Arial", fill: "red" 
-			});
-		levelCompletText.fixedToCamera = true;
-		// maxLevel = localStorage.getItem("maxLevel")==null?2:localStorage.getItem("maxLevel");
-		localStorage.setItem("levelCompleted",Math.max(2,levelCompleted));
-		nextLevel.visible = true;
-		nextLevel.inputEnabled = true;
-		rightButton.inputEnabled = false;
-		leftButton.inputEnabled = false;
-		upButton.inputEnabled = false;
-		mysprite.visible = false;
-		mysprite.x = 100;
-		mysprite.body.velocity.x = 0;
-		mysprite.body.velocity.y = 0;
-		mysprite.animations.stop();
-		b.body.velocity.x = 0;
-		b.body.velocity.y = 0;
-		nextLevel.onInputDown.add(goNextLevel,this);
-	}
-	
-	function goNextLevel(){
-		playAudio("levelClicked");
-		game.state.add("LevelDesign2",levelDesign2);
-		game.state.start("LevelDesign2");
+		levelSuccess = 1;
+		checkStage();
 	}
 	
 	function rightUp(){
@@ -308,20 +288,23 @@
 	}
 	
 	function checkLives(){
-		if (!mysprite.alive && livesDeducted == false || pitFall == true){
+		if (!mysprite.alive && livesDeducted == false || pitFall == true || timerEnd == 1){
 			remLives = remLives - 1;
 			livesDeducted = true;
 			pitFall = false;
-			if(remLives == 0){
-				gameOverText = game.add.text(game.width/2.3,game.height/1.7,"Game Over",{
-					font:"bold 40px Arial", fill: "red" 
-				});
-				heart.kill();
-			}
-			if (remLives > 0){
-				game.state.add("LevelDesign1",levelDesign1);
-				game.state.start("LevelDesign1");
-			}
+			timerEnd = 0;
+			checkStage();
+		}
+	}
+	
+	function checkStage(){
+		if (currStage == 1){
+			game.state.add("PlayerStateStage1",playerStateStage1);
+			game.state.start("PlayerStateStage1");
+		}
+		if (currStage == 2){
+			game.state.add("PlayerStateStage2",playerStateStage2);
+			game.state.start("PlayerStateStage2");
 		}
 	}
 	

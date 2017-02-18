@@ -28,14 +28,15 @@ var jumpCount = 0;
 var move = "stand";
 var livesDeducted = false;
 var pitFall = false;
-
+var baseLevelChange = 0;
+var timerEnd = 0;
 var playerProperties = {
   velocity: 300,
 }; 
 
-var levelDesign1 = function(game){}
+var stage1LevelDesign1 = function(game){}
 // Creates a new 'main' state that will contain the game
-	levelDesign1.prototype = {
+	stage1LevelDesign1.prototype = {
 		preload: function() { 
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);
@@ -49,6 +50,9 @@ var levelDesign1 = function(game){}
 		create: function() { 
 			// remLives = remLives - 1;
 			pitFall = false;
+			levelSuccess = 0;
+			currStage = 1;
+			stage1CurrLevel = 1;
 			game.world.setBounds(0,0,20000,0);
 			
 			cloud = game.add.tileSprite(0, 0,20000,500, 'cloud');
@@ -58,8 +62,17 @@ var levelDesign1 = function(game){}
 			fence = game.add.tileSprite(0,279,20000,45,"fence");
 			grass = game.add.tileSprite(0, game.height/1.55, 20000, 15, "grass");
 			
-			pit = game.add.sprite(400,279,'pit');
-			pit.height = 200;
+			levelAtTopText = game.add.text(game.width/2.3,10,"Level - "+stage1CurrLevel,{
+				font:"bold 16px Arial", fill: "red" 
+			});
+			levelAtTopText.fixedToCamera = true;
+			
+			pits = game.add.group();
+			pits.enableBody = true;
+			pits.createMultiple(1, 'pit');
+			
+			pits.children[0].reset(400,279);
+			pits.children[0].height = 200;
 			
 			targetBox = game.add.sprite(9170,game.height/1.55-50,'targetBox');
 			princess = game.add.sprite(9200,game.height/1.55-110,'princess');
@@ -97,7 +110,7 @@ var levelDesign1 = function(game){}
 			
 			rock = game.add.group();
 			rock.enableBody = true;
-			rock.createMultiple(16, 'rock');
+			rock.createMultiple(19, 'rock');
 			
 			for (var i =0;i<rock.children.length;i++){
 				rock.children[i].body.velocity.y = 0;
@@ -106,15 +119,15 @@ var levelDesign1 = function(game){}
 			
 			coins = game.add.group();
 			coins.enableBody = true;
-			coins.createMultiple(16,'coinsSprite');
+			coins.createMultiple(19,'coinsSprite');
 			
 			tubes = game.add.group();
 			tubes.enableBody = true;
-			tubes.createMultiple(4, 'tube');
+			tubes.createMultiple(6, 'tube');
 			
 			enemies = game.add.group();
 			enemies.enableBody = true;
-			enemies.createMultiple(7,'villian');
+			enemies.createMultiple(8,'villian');
 			
 			enemies.children[0].reset(1390,game.height/1.65);
 			enemies.children[0].vel = 100;
@@ -142,7 +155,8 @@ var levelDesign1 = function(game){}
 			mysprite.energised = 0;
 			mysprite.checkWorldBounds = true;
 			mysprite.visible = true;
-			// livesDeducted = false;
+			mysprite.dying = false;
+			livesDeducted = false;
 			
 			rock.children[0].reset(856, game.height/2.65);
 			rock.children[0].edgeLeft = true;
@@ -239,16 +253,26 @@ var levelDesign1 = function(game){}
 			rock.children[12].reset(5840, game.height/6);
 			rock.children[12].edgeRight = true;
 			
+			rock.children[13].reset(6320, game.height/2.65);
+			rock.children[13].edgeLeft = true;
+			rock.children[14].reset(6360, game.height/2.65);
+			rock.children[15].reset(6700, game.height/2.65);
+			rock.children[15].edgeRight = true;
+			
 			tubes.children[3].reset(6630,game.height/1.9);
+			
+			rock.children[13].reset(6920, game.height/2.65);
+			rock.children[13].edgeLeft = true;
+			rock.children[15].reset(6960, game.height/2.65);
+			rock.children[15].edgeRight = true;
 			
 			steps1.children[2].reset(7500,game.height/1.55);
 			steps2.children[2].reset(7530,game.height/1.64);
 			
-			rock.children[13].reset(8920, game.height/2.65);
-			rock.children[13].edgeLeft = true;
-			rock.children[14].reset(8960, game.height/2.65);
-			rock.children[15].reset(9000, game.height/2.65);
-			rock.children[15].edgeRight = true;
+			enemies.children[7].reset(7630,game.height/1.65);
+			enemies.children[7].vel = 100;
+			
+			tubes.children[4].reset(7730,game.height/1.9);
 			
 			coins.children[13].reset(8920,150);
 			coins.children[13].animations.add('spin',[0,1,2,3],10,true);
@@ -258,6 +282,23 @@ var levelDesign1 = function(game){}
 
 			coins.children[15].reset(9000,150);
 			coins.children[15].animations.add('spin',[0,1,2,3],10,true);
+			
+			tubes.children[5].reset(8030,game.height/1.9);
+			
+			rock.children[16].reset(8920, game.height/2.65);
+			rock.children[16].edgeLeft = true;
+			rock.children[17].reset(8960, game.height/2.65);
+			rock.children[18].reset(9000, game.height/2.65);
+			rock.children[18].edgeRight = true;
+			
+			coins.children[16].reset(8920,150);
+			coins.children[16].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[17].reset(8960,150);
+			coins.children[17].animations.add('spin',[0,1,2,3],10,true);
+
+			coins.children[18].reset(9000,150);
+			coins.children[18].animations.add('spin',[0,1,2,3],10,true);
 			
 			energyBottle = game.add.sprite(-1000,-1000,'energyBottle');
 			
@@ -281,20 +322,19 @@ var levelDesign1 = function(game){}
 			leftButton.pressed = "false";
 			upButton.pressed = "false";
 			
-			coinsText = game.add.text(game.width/1.5,10,"Coins Collected - ",{
+			coinsText = game.add.text(game.width/1.5,30,"Coins Collected - 0",{
 				font:"bold 24px Arial", fill: "red" 
 			});
 			coinsText.fixedToCamera = true;
 			
-			livesText = game.add.text(10,10,"Remaining Lives - ",{
+			livesText = game.add.text(10,30,"Remaining Lives - ",{
 				font:"bold 24px Arial", fill: "red" 
 			});
 			livesText.fixedToCamera = true;
 			for (var l =0;l<remLives;l++){
-				heart = game.add.sprite(livesText.width+10+l*35,10,'heart');
+				heart = game.add.sprite(livesText.width+10+l*35,30,'heart');
 				heart.fixedToCamera = true;
 			}
-			
 			
 			mysprite.animations.add('left',[0,1,2,3],10,true);
 			mysprite.animations.add('right',[5,6,7,8],10,true);
@@ -317,202 +357,9 @@ var levelDesign1 = function(game){}
 			// cursors = game.input.keyboard.createCursorKeys();
 			game.camera.follow(mysprite);
 		},
-		update: function() {
-			if (remLives > -1){
-				if (mysprite.y  > game.height/1.75 + 5 && !pitFall){
-					mysprite.y = game.height/1.75;
-				}
-				// if (mysprite.body.velocity.x == 0){
-					// my_media.stop();
-				// }
-				
-				checkWitchVisibility();	
-				
-				checkPit();
-			
-				if (mysprite.energised == 1){
-					if (move == "right"){
-						mysprite.animations.play('rightEnergy');
-					}
-					else if (move == "left"){
-						mysprite.animations.play('leftEnergy');
-					}
-					else if (jumpRight == "true"){
-						mysprite.animations.play('rightJumpEnergy');
-					}
-					else{
-						mysprite.animations.play('leftJumpEnergy');
-					}
-					
-					setTimeout(function(){
-						mysprite.energised = 0;
-						energyComplete();
-					},15000)
-				}
-				
-
-				// mysprite.animations.play('right');
-				if (rightButton.pressed == "true" && upButton.pressed == "true" && leftButton.pressed == "false"){
-					jumpPlayerRight();
-				}
-				
-				if (rightButton.pressed == "false" && upButton.pressed == "true" && leftButton.pressed == "true"){
-					jumpPlayerLeft();
-				}
-				
-				if(playerBaseLevel == "rock"){
-					if (move == "right"){
-						checkRockRight();
-						// checkRockTresRight();
-					}
-					if (move == "left"){
-						checkRockLeft();
-						// checkRockTresLeft();
-					}
-					
-				}
-				
-				if(playerBaseLevel == "treasure"){
-					if (move == "right"){
-						checkTresRight();
-					}
-					if (move == "left"){
-						checkTresLeft();
-					}
-					
-				}
-				
-				if (tresIndex > -1 && tresIndex < treasureBrick.children.length){
-					if(treasureBrick.children[tresIndex].edgeRight == true && move == "right"){
-						if (mysprite.x > treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width + 1){
-							mysprite.y = ground.y - mysprite.height;
-							playerBaseLevel = "ground";
-						}
-					}
-					if(treasureBrick.children[tresIndex].edgeLeft == true && move == "left"){
-						if (mysprite.x < treasureBrick.children[tresIndex].x - 1){
-							mysprite.y = ground.y - mysprite.height;
-							playerBaseLevel = "ground";
-						}
-					}
-					
-					if (nextElementRock = "treasureRight" && mysprite.x > (treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width+1) && move == "right"){
-						if(tresIndex < treasureBrick.children.length-1){
-							tresIndex = tresIndex + 1;
-						}
-						
-					}
-					
-					if (nextElementRock = "treasureLeft" && mysprite.x < (treasureBrick.children[tresIndex].x - 1) && move == "left"){
-						tresIndex = tresIndex - 1;
-					}
-		
-				}
-				
-				if (index > -1 && index < rock.children.length){
-					if(rock.children[index].edgeRight == true && move == "right"){
-						if (mysprite.x > rock.children[index].x + rock.children[index].width + 1){
-							mysprite.y = ground.y - mysprite.height;
-							playerBaseLevel = "ground";
-						}
-					}
-					if(rock.children[index].edgeLeft == true && move == "left"){
-						if (mysprite.x < rock.children[index].x - 1){
-							mysprite.y = ground.y - mysprite.height;
-							playerBaseLevel = "ground";
-						}
-					}
-					
-					if (nextElementRock = "rockRight" && mysprite.x > (rock.children[index].x + rock.children[index].width+1) && move == "right"){
-						if(index != 9){
-							index = index + 1;
-						}
-						
-					}
-					
-					if (nextElementRock = "rockLeft" && mysprite.x < (rock.children[index].x - 1) && move == "left"){
-						index = index - 1;
-					}
-		
-				}
-				
-				if ((ground.y < mysprite.y+mysprite.height) && 
-				(((move == "jump" && pos == "down") || (move == "jump" && pos == "up" && (rightButton.pressed == "true" || leftButton.pressed == "true")))
-				||	(move == "jump" && pos == "down" && (jumpLeft == "true" || jumpRight == "true")))){
-					upButton.pressed = "false";
-					mysprite.body.velocity.y = 0;
-					mysprite.body.gravity.y = 0;
-					mysprite.body.velocity.x = 0;
-					jumpCount = 0;
-				}
-				
-				
-				if (move == "jump" ){
-					for (en=0;en<enemies.children.length;en++){
-						if (enemies.children[en].alive && mysprite.alive){
-							if((enemies.children[en].x-2 < mysprite.x + mysprite.width) && (enemies.children[en].y-2 < mysprite.y+mysprite.height) && enemies.children[en].x + enemies.children[en].width > mysprite.x + mysprite.width){
-								mysprite.body.velocity.x = 0;
-								mysprite.body.velocity.y = 0;
-								
-								enemies.children[en].body.velocity.y = 0;
-								enemies.children[en].body.gravity.y = 0;
-								
-								enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
-								// playAudio("enemyKilled");
-								enemies.children[en].kill();
-								setTimeout(function(){
-									enemyDyin.kill();
-								},300);
-								enemyKilled = 1;
-								// mysprite.y = game.height/1.75;
-							}
-						}
-						
-					}
-					
-				}
-				
-				
-				rightButton.onInputDown.add(rightDown,this);
-				
-				leftButton.onInputDown.add(leftDown);
-				upButton.onInputDown.add(jumpPlayer);
-				rightButton.onInputUp.add(rightUp,this);
-				leftButton.onInputUp.add(leftUp,this);
-				if (upButton.pressed !="true"){
-					checkGround();
-				}
-				
-				checkGround();
-				
-				if (pos == "up" || (pos == "down" && move == "jump")|| collision == 1 || rockCol == 1){
-					stopScene();
-				}
-				
-				moveEnemy();
-				
-				for (var i = 0;i<coins.children.length;i++){
-					if(coins.children[i].alive){
-						coins.children[i].animations.play('spin');
-					}
-					
-				}
-				
-				// // if (playerBaseLevel == "tube" || playerBaseLevel == "rock" || playerBaseLevel == "steps1" || playerBaseLevel == "steps2")
-				
-				game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
-				game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
-				game.physics.arcade.collide(mysprite, energyBottle, myspriteEnergyCollision, null, this);
-				game.physics.arcade.collide(mysprite, enemies, myspriteEnemiesCollision, null, this);
-				game.physics.arcade.collide(enemies, obstructs, enemyObstructCollision, null, this);
-				game.physics.arcade.collide(mysprite, rock, myspriteRockCollision, null, this);
-				game.physics.arcade.collide(mysprite, treasureBrick, myspriteTreasureCollision, null, this);
-				game.physics.arcade.collide(mysprite, coins, myspriteCoinCollision, null, this);
-				game.physics.arcade.collide(mysprite, tubes, myspriteTubesCollision, null, this);
-				game.physics.arcade.collide(mysprite, steps1, myspriteSteps1Collision, null, this);
-				game.physics.arcade.collide(mysprite, steps2, myspriteSteps2Collision, null, this);
-			}
-		}
+		update: function() { 
+			updateFunctions();
+		},
 	}
 	
 	

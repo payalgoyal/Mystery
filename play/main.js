@@ -91,8 +91,8 @@ game.state.add("Main",main);
 game.state.start("Main");
 
  function startGame() {
-	game.state.add("Levels",levels);
-	game.state.start("Levels");
+	game.state.add("Stage1Levels",stage1Levels);
+	game.state.start("Stage1Levels");
  }
  
  function menuScreen() {
