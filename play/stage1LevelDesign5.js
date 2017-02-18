@@ -328,6 +328,7 @@ var stage1LevelDesign5 = function(game){}
 			obstructs.push(tubes);
 			obstructs.push(rock);
 			obstructs.push(steps1);
+			obstructs.push(pits);
 			
 			rightButton = game.add.button(game.camera.view.width/2,game.camera.view.height-50,'rightArrow');
 			rightButton.fixedToCamera = true;

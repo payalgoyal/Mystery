@@ -31,14 +31,14 @@
 				font:"bold 40px Arial", fill: "red" 
 					});
 			
-			mysprite=game.add.sprite(game.width/2.5,game.height/2.5,'rightSprite');
+			mysprite=game.add.sprite(game.width/2.9,game.height/2.5,'rightSprite');
 			mysprite.frame=4;
 			mysprite.width = 50;
 			mysprite.height = 60;
 			
 			if(remLives == 0){
-				gameOverText = game.add.text(game.width/2.5,game.height/1.5,"Game Over",{
-					font:"bold 40px Arial", fill: "red" 
+				gameOverText = game.add.text(game.width/2.5,game.height/2.5,"Game Over",{
+					font:"bold 46px Arial", fill: "red" 
 				});
 				// heart.kill();
 				restartGame = game.add.button(game.width/2,game.height/1.6,"levelsLand");
