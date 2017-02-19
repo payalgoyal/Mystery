@@ -9,7 +9,7 @@ function updateFunctions(){
 		
 		checkWitchVisibility();	
 		
-		checkPit();
+		// checkPit();
 
 		if (mysprite.energised == 1){
 			if (move == "right"){
@@ -184,16 +184,16 @@ function updateFunctions(){
 		
 		// // if (playerBaseLevel == "tube" || playerBaseLevel == "rock" || playerBaseLevel == "steps1" || playerBaseLevel == "steps2")
 		
-		game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
-		game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
-		game.physics.arcade.collide(mysprite, energyBottle, myspriteEnergyCollision, null, this);
-		game.physics.arcade.collide(mysprite, enemies, myspriteEnemiesCollision, null, this);
-		game.physics.arcade.collide(enemies, obstructs, enemyObstructCollision, null, this);
-		game.physics.arcade.collide(mysprite, rock, myspriteRockCollision, null, this);
-		game.physics.arcade.collide(mysprite, treasureBrick, myspriteTreasureCollision, null, this);
-		game.physics.arcade.collide(mysprite, coins, myspriteCoinCollision, null, this);
-		game.physics.arcade.collide(mysprite, tubes, myspriteTubesCollision, null, this);
-		game.physics.arcade.collide(mysprite, steps1, myspriteSteps1Collision, null, this);
-		game.physics.arcade.collide(mysprite, steps2, myspriteSteps2Collision, null, this);
+		// game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
+		// game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
+		// game.physics.arcade.collide(mysprite, energyBottle, myspriteEnergyCollision, null, this);
+		// game.physics.arcade.collide(mysprite, enemies, myspriteEnemiesCollision, null, this);
+		// game.physics.arcade.collide(enemies, obstructs, enemyObstructCollision, null, this);
+		// game.physics.arcade.collide(mysprite, rock, myspriteRockCollision, null, this);
+		// game.physics.arcade.collide(mysprite, treasureBrick, myspriteTreasureCollision, null, this);
+		// game.physics.arcade.collide(mysprite, coins, myspriteCoinCollision, null, this);
+		// game.physics.arcade.collide(mysprite, tubes, myspriteTubesCollision, null, this);
+		// game.physics.arcade.collide(mysprite, steps1, myspriteSteps1Collision, null, this);
+		// game.physics.arcade.collide(mysprite, steps2, myspriteSteps2Collision, null, this);
 	}
 }

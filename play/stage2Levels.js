@@ -60,16 +60,16 @@
 				});
 			}
 			
-			for (var i = 0;i< levelCompletedStage2;i++){
+			for (var i = 0;i< stage2LevelButtons.length;i++){
 				stage2LevelButtons[i].inputEnabled = true;
 			}
-			for (var j = levelCompletedStage2;j< stage2LevelButtons.length;j++){
-				stage2LevelButtons[j].inputEnabled = false;
-			}
+			// for (var j = levelCompletedStage2;j< stage2LevelButtons.length;j++){
+				// stage2LevelButtons[j].inputEnabled = false;
+			// }
 			
-			boat = game.add.sprite(stage2LevelButtons[levelCompletedStage2-1].x+40,stage2LevelButtons[levelCompletedStage2-1].y+20,'boat');
-			boat.width = 40;
-			boat.height = 40;
+			// boat = game.add.sprite(stage2LevelButtons[levelCompletedStage2-1].x+40,stage2LevelButtons[levelCompletedStage2-1].y+20,'boat');
+			// boat.width = 40;
+			// boat.height = 40;
 			
 			prevStageButton = game.add.button(100,game.camera.view.height/2,'leftArrow');
 			prevStageButton.onInputDown.add(prevStageChange);
