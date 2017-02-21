@@ -331,7 +331,7 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2 || b.body.facing == 1 || b.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
 			mysprite.body.velocity.x = 100;
-			playAudio("enemyKilled");
+			playAudio("enemyKill");
 			b.kill();
 		}
 	}
@@ -934,7 +934,7 @@
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 							mysprite.y = enemyDyin.y - mysprite.height;
-							// // playAudio("enemyKill");
+							playAudio("enemyKill");
 							enemies.children[en].kill();
 							setTimeout(function(){
 								enemyDyin.kill();
@@ -958,7 +958,7 @@
 							
 							enemyDyin = game.add.sprite(enemies.children[en].body.x,enemies.children[en].body.y + enemies.children[en].body.height - 10,'enemyDie');
 							mysprite.y = enemyDyin.y - mysprite.height;
-							// // playAudio("enemyKill");
+							playAudio("enemyKill");
 							enemies.children[en].kill();
 							setTimeout(function(){
 								enemyDyin.kill();

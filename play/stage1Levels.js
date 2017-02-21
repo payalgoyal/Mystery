@@ -90,49 +90,49 @@
    }
    
 	function levelNo1(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign1",stage1LevelDesign1);
 		game.state.start("Stage1LevelDesign1");
 	}
 	
 	function levelNo2(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign2",stage1LevelDesign2);
 		game.state.start("Stage1LevelDesign2");
 	}
 	
 	function levelNo3(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign3",stage1LevelDesign3);
 		game.state.start("Stage1LevelDesign3");
 	}
 	
 	function levelNo4(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign4",stage1LevelDesign4);
 		game.state.start("Stage1LevelDesign4");
 	}
 	
 	function levelNo5(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign5",stage1LevelDesign5);
 		game.state.start("Stage1LevelDesign5");
 	}
 	
 	function levelNo6(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign6",stage1LevelDesign6);
 		game.state.start("Stage1LevelDesign6");
 	}
 	
 	function levelNo7(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign7",stage1LevelDesign7);
 		game.state.start("Stage1LevelDesign7");
 	}
 	
 	function levelNo8(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign8",stage1LevelDesign8);
 		game.state.start("Stage1LevelDesign8");
 	}

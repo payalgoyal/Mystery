@@ -95,49 +95,49 @@
    }
    
 	function stage2LevelNo1(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign1",stage2LevelDesign1);
 		game.state.start("Stage2LevelDesign1");
 	}
 	
 	function stage2LevelNo2(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign2",stage2LevelDesign2);
 		game.state.start("Stage2LevelDesign2");
 	}
 	
 	function stage2LevelNo3(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign3",stage2LevelDesign3);
 		game.state.start("Stage2LevelDesign3");
 	}
 	
 	function stage2LevelNo4(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign4",stage2LevelDesign4);
 		game.state.start("Stage2LevelDesign4");
 	}
 	
 	function stage2LevelNo5(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign5",stage2LevelDesign5);
 		game.state.start("Stage2LevelDesign5");
 	}
 	
 	function stage2LevelNo6(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign6",stage2LevelDesign6);
 		game.state.start("Stage2LevelDesign6");
 	}
 	
 	function stage2LevelNo7(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign7",stage2LevelDesign7);
 		game.state.start("Stage2LevelDesign7");
 	}
 	
 	function stage2LevelNo8(){
-		// playAudio("levelClicked");
+		playAudio("levelClicked");
 		game.state.add("Stage2LevelDesign8",stage2LevelDesign8);
 		game.state.start("Stage2LevelDesign8");
 	}
