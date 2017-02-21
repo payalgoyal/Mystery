@@ -67,8 +67,8 @@ var stage1LevelDesign4 = function(game){}
 			});
 			levelAtTopText.fixedToCamera = true;
 			
-			targetBox = game.add.sprite(9170,game.height/1.55-50,'targetBox');
-			princess = game.add.sprite(9200,game.height/1.55-110,'princess');
+			targetBox = game.add.sprite(10170,game.height/1.55-50,'targetBox');
+			princess = game.add.sprite(10200,game.height/1.55-110,'princess');
 			princess.width = 120;
 			princess.height = 120;
 			
@@ -82,7 +82,7 @@ var stage1LevelDesign4 = function(game){}
 			
 			pits = game.add.group();
 			pits.enableBody = true;
-			pits.createMultiple(2,'pit');
+			pits.createMultiple(4,'pit');
 			
 			witch = game.add.sprite(200,110,'witch');
 			witch.width = game.height/4;
@@ -91,11 +91,11 @@ var stage1LevelDesign4 = function(game){}
 			
 			steps1 = game.add.group();
 			steps1.enableBody = true;
-			steps1.createMultiple(3,'lowerSteps');
+			steps1.createMultiple(4,'lowerSteps');
 			
 			steps2 = game.add.group();
 			steps2.enableBody = true;
-			steps2.createMultiple(3,'steps2');
+			steps2.createMultiple(4,'steps2');
 			
 			treasureBrick = game.add.group();
 			treasureBrick.enableBody = true;
@@ -107,7 +107,7 @@ var stage1LevelDesign4 = function(game){}
 			
 			rock = game.add.group();
 			rock.enableBody = true;
-			rock.createMultiple(23, 'rock');
+			rock.createMultiple(29, 'rock');
 			
 			for (var i =0;i<rock.children.length;i++){
 				rock.children[i].body.velocity.y = 0;
@@ -116,7 +116,7 @@ var stage1LevelDesign4 = function(game){}
 			
 			coins = game.add.group();
 			coins.enableBody = true;
-			coins.createMultiple(16,'coinsSprite');
+			coins.createMultiple(19,'coinsSprite');
 			
 			tubes = game.add.group();
 			tubes.enableBody = true;
@@ -301,6 +301,36 @@ var stage1LevelDesign4 = function(game){}
 
 			coins.children[15].reset(9000,150);
 			coins.children[15].animations.add('spin',[0,1,2,3],10,true);
+			
+			pits.children[2].reset(9200,279);
+			pits.children[2].height = 200;
+			
+			rock.children[23].reset(9500, game.height/2.65);
+			rock.children[23].edgeLeft = true;
+			rock.children[24].reset(9540, game.height/2.65);
+			rock.children[25].reset(9580, game.height/2.65);
+			rock.children[25].edgeRight = true;
+			
+			rock.children[26].reset(9500, game.height/6);
+			rock.children[26].edgeLeft = true;
+			rock.children[27].reset(9540, game.height/6);
+			rock.children[28].reset(9580, game.height/6);
+			rock.children[28].edgeRight = true;
+			
+			pits.children[3].reset(9700,279);
+			pits.children[3].height = 200;
+			
+			coins.children[16].reset(8920,150);
+			coins.children[16].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[17].reset(8960,150);
+			coins.children[17].animations.add('spin',[0,1,2,3],10,true);
+
+			coins.children[18].reset(9000,150);
+			coins.children[18].animations.add('spin',[0,1,2,3],10,true);
+			
+			steps1.children[3].reset(10000,game.height/1.55);
+			steps2.children[3].reset(10030,game.height/1.64);
 			
 			energyBottle = game.add.sprite(-1000,-1000,'energyBottle');
 			

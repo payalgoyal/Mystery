@@ -25,7 +25,6 @@
 		
 			   // // // Play audio
 		 my_media.play();
-		// // $("#Plane").on("ended", playAudio("Plane"));
 	} 
 	
 	function checkPit(){
@@ -35,15 +34,11 @@
 				pitFall = true;
 				mysprite.body.velocity.y = 60;
 				mysprite.body.velocity.x = 0;
-				// setTimeout(function(){
-					// mysprite.visible = false;
 				setTimeout(function(){
 					checkLives();
 				 }, 800);
-				// }, 500);
 			}
 		}
-		
 	}
 	
 	function checkWitchVisibility(){
@@ -58,7 +53,6 @@
 			witch.x = mysprite.x + 200;
 			witch.y = game.height/6;
 			witch.visible = true;
-			
 		}
 		else{
 			witch.visible = false;
@@ -74,6 +68,7 @@
 		rightButton.pressed = "false";
 		rightButton.pressed = "false";
 	}
+	
 	function rightDown(){
 		rightButton.pressed = "true";
 		if (upButton.pressed == "true"){
@@ -87,6 +82,7 @@
 	function leftUp(){
 		leftButton.pressed = "false";
 	}
+	
 	function leftDown(){
 		leftButton.pressed = "true";
 		if (upButton.pressed == "true"){
@@ -109,11 +105,10 @@
 		treasureIndex = -1;
 		
 		if (tresIndex+1 < treasureBrick.children.length){
-			// for (var tres = tresIndex+1;tres<treasureBrick.children.length;tres++){
 			if ((treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex].width + 10)>treasureBrick.children[tresIndex+1].x){
 				treasureIndex = tresIndex+1;
 			}
-			// }
+			
 			if (treasureIndex > -1){
 				nextElementRock = "treasureRight";
 			}
@@ -124,7 +119,6 @@
 		else{
 			checkTresRockRight();
 		}
-		
 	}
 	
 	function checkTresRockRight(){
@@ -157,11 +151,10 @@
 	function checkTresLeft(){
 		treasureIndex = -1;
 		if (tresIndex-1 > -1){
-			// for (var tres = tresIndex-1;tres>-1;tres--){
 			if ((treasureBrick.children[tresIndex].x - 10)<treasureBrick.children[tresIndex].x + treasureBrick.children[tresIndex-1].width){
 				treasureIndex = tresIndex;
 			}
-			// }
+			
 			if (treasureIndex > -1){
 				nextElementRock = "treasureLeft";
 			}
@@ -172,7 +165,6 @@
 		else{
 			checkTresRockLeft();
 		}
-		
 	}
 	
 	function checkTresRockLeft(){
@@ -200,7 +192,6 @@
 		if (rockTresIndex == -1){
 			nextElementRock = "ground";
 		}
-		
 	}
 	
 	function checkRockRight(){
@@ -226,8 +217,7 @@
 			else{
 				checkRockTresLeft();
 			}
-		}
-		
+		}	
 	}
 	
 	function moveEnemy(){
@@ -337,8 +327,6 @@
 			setTimeout(function(){
 				checkLives();
 			}, 900);
-		
-			stopScene();
 		}
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2 || b.body.facing == 1 || b.body.facing == 2) && b.alive && a.energised == 1){
 			b.body.velocity.x = 0;
@@ -366,7 +354,6 @@
 				b.body.moves = false;
 				mysprite.body.velocity.x = 0;
 				playerBaseLevel = "ground";
-				stopScene();
 		}
 		
 		if (b.body.facing == 4 || b.body.touching.up){
@@ -428,7 +415,6 @@
 				rock.children[r].edgeRight = true;
 			}
 		}
-		
 	}
 	
 	function myspriteRock10Collision(b){
@@ -449,7 +435,6 @@
 				b.body.moves = false;
 				playerBaseLevel = "ground";
 				b.body.velocity.x = 0;
-				stopScene();
 		}
 		if (b.body.facing == 3 || b.body.touching.down){
 			b.visible = false;
@@ -480,7 +465,6 @@
 			upButton.pressed = "false";
 			playerBaseLevel = "rock";
 		}
-		
 	}
 	
 	function myspriteRockCollision(a,b){
@@ -552,7 +536,6 @@
 				b.body.move = false;
 				playerBaseLevel = "ground";
 				b.body.velocity.x = 0;
-				stopScene();
 		}
 		if (b.body.facing == 3 || b.body.touching.down){
 			mysprite.body.y = ground.y - mysprite.height;
@@ -584,12 +567,6 @@
 			playAudio("coinCollect");
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
-			// rockCollision();
-			// tubeCollision();
-			
-			// mysprite.body.y = ground.y - mysprite.height;
-			// mysprite.body.velocity.y = 0;
-			// playerBaseLevel = "ground";
 		}
 	}
 	
@@ -615,7 +592,6 @@
 			// if (move == "stopRight"){
 				mysprite.body.velocity.x = 0;
 			// }
-			stopScene();
 		}
 		
 		//top collision
@@ -651,8 +627,6 @@
 			// if (move == "stopRight"){
 				mysprite.body.velocity.x = 0;
 			// }
-			
-			stopScene();
 		}
 		
 		//top collision
@@ -678,9 +652,6 @@
 		if ((move == "stopRight" && collision == 1 && jumpRight == "true") || (move == "jump" && collision == 1 && jumpRight == "true")){
 			collision = 0;
 		}
-		if (collision == 1){
-			stopScene();
-		}
 		
 		if (collision == 0){
 			mysprite.body.velocity.x = 100;
@@ -689,7 +660,6 @@
 			move = "right";
 			playAudio("walk");
 		}
-		
 	}
 	
 	function movePlayerLeft(){
@@ -702,9 +672,6 @@
 		if ((move == "stopLeft" && collision == 1 && jumpLeft == "true") || (move == "jump" && collision == 1 && jumpRight == "true")){
 			collision = 0;
 		}
-		if (collision == 1){
-			stopScene();
-		}
 		
 		if (collision == 0){
 			leftButton.pressed = "true";
@@ -712,110 +679,6 @@
 			move = "left";
 			playAudio("walk");
 			mysprite.body.velocity.x = -100;	
-		}
-	}
-	
-	function moveSceneRight(){
-		// if (ground.x > -1200){
-			// ground.x-=2;
-		// }
-		// else{
-			// ground.x = 1000;
-		// }
-		// if (ground_dup.x > -1200){
-			// ground_dup.x -= 2;
-		// }
-		// else{
-			// ground_dup.x = 1000;
-		// }
-		
-		for(var j = 0;j < steps1.children.length; j++){
-			steps1.children[j].body.immovable = false;
-			steps1.children[j].body.moves = true;
-			steps1.children[j].body.velocity.x = -100;
-		}
-		
-		for(var k = 0;k < steps2.children.length; k++){
-			steps2.children[k].body.immovable = false;
-			steps2.children[k].body.moves = true;
-			steps2.children[k].body.velocity.x = -100;
-		}
-		
-		for (var i = 0; i < rock.children.length; i++){
-			rock.children[i].body.immovable = false;
-			rock.children[i].body.moves = true;
-			rock.children[i].body.velocity.x = -100;
-		}
-		
-		for (var l = 0;l < tubes.children.length; l++){
-			tubes.children[l].body.immovable = false;
-			tubes.children[l].body.moves = true;
-			tubes.children[l].body.velocity.x = -100;
-		}
-		
-		for (var m = 0;m < coins.children.length; m++){
-			coins.children[m].body.velocity.x = -100;
-		}
-	}
-	
-	function moveSceneLeft(){
-		// if (ground.x < 1200){
-			// ground.x+=2;
-		// }
-		// else{
-			// ground.x = -1000;
-		// }
-		// if (ground_dup.x < 1200){
-			// ground_dup.x += 2;
-		// }
-		// else{
-			// ground_dup.x = -1000;
-		// }
-		
-		for (var i = 0; i < rock.children.length; i++){
-			rock.children[i].body.immovable = false;
-			rock.children[i].body.moves = true;
-			rock.children[i].body.velocity.x = 100;
-		}
-		for(var j = 0;j < steps1.children.length; j++){
-			steps1.children[j].body.immovable = false;
-			steps1.children[j].body.moves = true;
-			steps1.children[j].body.velocity.x = 100;
-		}
-		
-		for(var k = 0;k < steps2.children.length; k++){
-			steps2.children[k].body.immovable = false;
-			steps2.children[k].body.moves = true;
-			steps2.children[k].body.velocity.x = 100;
-		}	
-		
-		for (var l = 0;l < tubes.children.length; l++){
-			tubes.children[l].body.immovable = false;
-			tubes.children[l].body.moves = true;
-			tubes.children[l].body.velocity.x = 100;
-		}
-		
-		for (var m = 0;m < coins.children.length; m++){
-			coins.children[m].body.velocity.x = 100;
-		}
-	}
-   
-	function stopScene(){
-		for(var j = 0;j < steps1.children.length; j++){
-			steps1.children[j].body.velocity.x = 0;
-		}
-		
-		for(var k = 0;k < steps2.children.length; k++){
-			steps2.children[k].body.velocity.x = 0;
-		}
-		for (var i = 0; i < rock.children.length; i++){
-			rock.children[i].body.velocity.x = 0;
-		}
-		for (var l = 0; l < tubes.children.length; l++){
-			tubes.children[l].body.velocity.x = 0;
-		}
-		for (var m = 0;m < coins.children.length; m++){
-			coins.children[m].body.velocity.x = 0;
 		}
 	}
 	
@@ -939,10 +802,6 @@
 			}
 		}
 		
-		// if (stepsInd == -1){
-			// mysprite.y = ground.y - mysprite.height;
-			// playerBaseLevel = "ground";
-		// }
 		treasureCollision();	
 		
 		rockCollision();
@@ -1139,7 +998,6 @@
 			
 			mysprite.body.velocity.y = -80;
 			mysprite.body.velocity.x = 0;
-			stopScene();
 			playAudio("jump");
 				
 			setTimeout(function(){
@@ -1196,28 +1054,4 @@
 			}	,1550)
 		}
 		
-	}
-   
-	function breakRock(){
-		// rock.visible = false;
-		mysprite.body.velocity.y = 0;
-		mysprite.y = 260;
-	}
-	
-	function stopPlayer(){
-		if(mysprite.x <= steps1.x && mysprite.x >= steps1.x-32){
-			rightMove = 0;
-			// mysprite.body.velocity.y = 0;
-			playerStop = 1;
-		}
-		if(mysprite.x >= steps1.x+steps1.width && mysprite.x <= steps1.x+steps1.width+8){
-			leftMove = 0;
-			// mysprite.body.velocity.y = 0;
-			playerStop = 1;
-		}
-		
-	}
-	
-	function diePlayer(){
-		mysprite.visible=false;
 	}

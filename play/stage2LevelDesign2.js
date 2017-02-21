@@ -69,8 +69,8 @@ var stage2LevelDesign2 = function(game){}
 			});
 			levelAtTopText.fixedToCamera = true;
 			
-			targetBox = game.add.sprite(9170,game.height/1.55-50,'targetBox');
-			princess = game.add.sprite(9200,game.height/1.55-110,'princess');
+			targetBox = game.add.sprite(14100,game.height/1.55-50,'targetBox');
+			princess = game.add.sprite(14130,game.height/1.55-110,'princess');
 			princess.width = 120;
 			princess.height = 120;
 			
@@ -109,7 +109,7 @@ var stage2LevelDesign2 = function(game){}
 			
 			rock = game.add.group();
 			rock.enableBody = true;
-			rock.createMultiple(24, 'rock');
+			rock.createMultiple(27, 'rock');
 			
 			for (var i =0;i<rock.children.length;i++){
 				rock.children[i].body.velocity.y = 0;
@@ -275,14 +275,20 @@ var stage2LevelDesign2 = function(game){}
 			rock.children[20].reset(11840, game.height/6);
 			rock.children[20].edgeRight = true;
 			
+			rock.children[21].reset(11920, game.height/2.65);
+			rock.children[21].edgeLeft = true;
+			rock.children[22].reset(11960, game.height/2.65);
+			rock.children[23].reset(12000, game.height/2.65);
+			rock.children[23].edgeRight = true;
+			
 			steps1.children[2].reset(12500,game.height/1.55);
 			steps2.children[2].reset(12530,game.height/1.64);
 			
-			rock.children[21].reset(13920, game.height/2.65);
-			rock.children[21].edgeLeft = true;
-			rock.children[22].reset(13960, game.height/2.65);
-			rock.children[23].reset(14000, game.height/2.65);
-			rock.children[23].edgeRight = true;
+			rock.children[24].reset(13920, game.height/2.65);
+			rock.children[24].edgeLeft = true;
+			rock.children[25].reset(13960, game.height/2.65);
+			rock.children[26].reset(14000, game.height/2.65);
+			rock.children[26].edgeRight = true;
 			
 			energyBottle = game.add.sprite(-1000,-1000,'energyBottle');
 			

@@ -14,8 +14,8 @@
 			game.load.image("levelsLand", "images/levelLand.png");
 			game.load.image("ocean", "images/ocean.jpg");
 			game.load.image("boat", "images/boat.png");
+			game.load.image("lock", "images/lock.png");
 			game.load.spritesheet("coinsSprite", "images/coinSprite.png",40,39);
-			game.load.spritesheet("rightSprite", "images/dude.png",32,48);
 			
 		},
 
@@ -29,28 +29,31 @@
 			stageText = game.add.text(game.width/2.5,20,"Stage 1",{
 					font:"bold 28px Arial", fill: "red" 
 				});
-			
-			levelButtons[0] = game.add.button(game.width/3.5,100,"levelsLand");
-			
-			levelButtons[0].onInputDown.add(levelNo1);
-			
 			levelCompletedStage1 = localStorage.getItem("levelCompletedStage1")==null?1:localStorage.getItem("levelCompletedStage1");
 			
-			levelButtons[1] = game.add.button(game.width/2.5,100,"levelsLand");
+			levelButtons[0] = game.add.button(game.width/4.5,140,"levelsLand");
+			levelButtons[0].onInputDown.add(levelNo1);
 			
+			levelButtons[1] = game.add.button(game.width/2.9,100,"levelsLand");
 			levelButtons[1].onInputDown.add(levelNo2);
 			
-			levelButtons[2] = game.add.button(game.width/1.9,100,"levelsLand");
-			
+			levelButtons[2] = game.add.button(game.width/1.95,100,"levelsLand");
 			levelButtons[2].onInputDown.add(levelNo3);
 			
-			levelButtons[3] = game.add.button(game.width/2.9,200,"levelsLand");
-			
+			levelButtons[3] = game.add.button(game.width/1.5,140,"levelsLand");
 			levelButtons[3].onInputDown.add(levelNo4);
 			
-			levelButtons[4] = game.add.button(game.width/2.1,200,"levelsLand");
-			
+			levelButtons[4] = game.add.button(game.width/3.1,220,"levelsLand");
 			levelButtons[4].onInputDown.add(levelNo5);
+			
+			levelButtons[5] = game.add.button(game.width/2.3,180,"levelsLand");
+			levelButtons[5].onInputDown.add(levelNo6);
+			
+			levelButtons[6] = game.add.button(game.width/1.8,220,"levelsLand");
+			levelButtons[6].onInputDown.add(levelNo7);
+			
+			levelButtons[7] = game.add.button(game.width/2.2,300,"levelsLand");
+			levelButtons[7].onInputDown.add(levelNo8);
 			
 			for (var land=0;land<levelButtons.length;land++){
 				levelButtons[land].width = 70;
@@ -60,16 +63,19 @@
 				});
 			}
 			
-			for (var i = 0;i< levelButtons.length;i++){
+			for (var i = 0;i< levelCompletedStage1;i++){
 				levelButtons[i].inputEnabled = true;
 			}
-			// for (var j = levelCompletedStage1;j< levelButtons.length;j++){
-				// levelButtons[j].inputEnabled = false;
-			// }
+			for (var j = levelCompletedStage1;j< levelButtons.length;j++){
+				levelButtons[j].inputEnabled = false;
+				lock = game.add.sprite(levelButtons[j].x+20,levelButtons[j].y+5,'lock');
+				lock.width = 30;
+				lock.height = 30
+			}
 			
-			// boat = game.add.sprite(levelButtons[levelCompletedStage1-1].x+40,levelButtons[levelCompletedStage1-1].y+20,'boat');
-			// boat.width = 40;
-			// boat.height = 40;
+			boat = game.add.sprite(levelButtons[levelCompletedStage1-1].x+40,levelButtons[levelCompletedStage1-1].y+20,'boat');
+			boat.width = 40;
+			boat.height = 40;
 			
 			nextStageButton = game.add.button(game.camera.view.width-100,game.camera.view.height/2,'rightArrow');
 			nextStageButton.onInputDown.add(nextStageChange);
@@ -111,6 +117,24 @@
 		// playAudio("levelClicked");
 		game.state.add("Stage1LevelDesign5",stage1LevelDesign5);
 		game.state.start("Stage1LevelDesign5");
+	}
+	
+	function levelNo6(){
+		// playAudio("levelClicked");
+		game.state.add("Stage1LevelDesign6",stage1LevelDesign6);
+		game.state.start("Stage1LevelDesign6");
+	}
+	
+	function levelNo7(){
+		// playAudio("levelClicked");
+		game.state.add("Stage1LevelDesign7",stage1LevelDesign7);
+		game.state.start("Stage1LevelDesign7");
+	}
+	
+	function levelNo8(){
+		// playAudio("levelClicked");
+		game.state.add("Stage1LevelDesign8",stage1LevelDesign8);
+		game.state.start("Stage1LevelDesign8");
 	}
 	
 	function nextStageChange(){

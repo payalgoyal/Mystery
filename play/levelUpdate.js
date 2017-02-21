@@ -3,13 +3,10 @@ function updateFunctions(){
 		if (mysprite.y  > game.height/1.75 + 5 && !pitFall){
 			mysprite.y = game.height/1.75;
 		}
-		// if (mysprite.body.velocity.x == 0){
-			// my_media.stop();
-		// }
 		
 		checkWitchVisibility();	
 		
-		// checkPit();
+		checkPit();
 
 		if (mysprite.energised == 1){
 			if (move == "right"){
@@ -31,8 +28,6 @@ function updateFunctions(){
 			},15000)
 		}
 		
-
-		// mysprite.animations.play('right');
 		if (rightButton.pressed == "true" && upButton.pressed == "true" && leftButton.pressed == "false"){
 			jumpPlayerRight();
 		}
@@ -44,13 +39,10 @@ function updateFunctions(){
 		if(playerBaseLevel == "rock"){
 			if (move == "right"){
 				checkRockRight();
-				// checkRockTresRight();
 			}
 			if (move == "left"){
 				checkRockLeft();
-				// checkRockTresLeft();
 			}
-			
 		}
 		
 		if(playerBaseLevel == "treasure"){
@@ -60,7 +52,6 @@ function updateFunctions(){
 			if (move == "left"){
 				checkTresLeft();
 			}
-			
 		}
 		
 		if (tresIndex > -1 && tresIndex < treasureBrick.children.length){
@@ -70,6 +61,7 @@ function updateFunctions(){
 					playerBaseLevel = "ground";
 				}
 			}
+			
 			if(treasureBrick.children[tresIndex].edgeLeft == true && move == "left"){
 				if (mysprite.x < treasureBrick.children[tresIndex].x - 1){
 					mysprite.y = ground.y - mysprite.height;
@@ -81,13 +73,11 @@ function updateFunctions(){
 				if(tresIndex < treasureBrick.children.length-1){
 					tresIndex = tresIndex + 1;
 				}
-				
 			}
 			
 			if (nextElementRock = "treasureLeft" && mysprite.x < (treasureBrick.children[tresIndex].x - 1) && move == "left"){
 				tresIndex = tresIndex - 1;
 			}
-
 		}
 		
 		if (index > -1 && index < rock.children.length){
@@ -97,6 +87,7 @@ function updateFunctions(){
 					playerBaseLevel = "ground";
 				}
 			}
+			
 			if(rock.children[index].edgeLeft == true && move == "left"){
 				if (mysprite.x < rock.children[index].x - 1){
 					mysprite.y = ground.y - mysprite.height;
@@ -108,13 +99,11 @@ function updateFunctions(){
 				if(index != 9){
 					index = index + 1;
 				}
-				
 			}
 			
 			if (nextElementRock = "rockLeft" && mysprite.x < (rock.children[index].x - 1) && move == "left"){
 				index = index - 1;
 			}
-
 		}
 		
 		if ((ground.y < mysprite.y+mysprite.height) && 
@@ -126,7 +115,6 @@ function updateFunctions(){
 			mysprite.body.velocity.x = 0;
 			jumpCount = 0;
 		}
-		
 		
 		if (move == "jump" ){
 			for (en=0;en<enemies.children.length;en++){
@@ -148,9 +136,7 @@ function updateFunctions(){
 						// mysprite.y = game.height/1.75;
 					}
 				}
-				
 			}
-			
 		}
 		
 		if (baseLevelChange == 1 && (move =="right" || move == "left")){
@@ -169,9 +155,9 @@ function updateFunctions(){
 		
 		checkGround();
 		
-		if (pos == "up" || (pos == "down" && move == "jump")|| collision == 1 || rockCol == 1){
-			stopScene();
-		}
+		// if (pos == "up" || (pos == "down" && move == "jump")|| collision == 1 || rockCol == 1){
+			// stopScene();
+		// }
 		
 		moveEnemy();
 		
@@ -179,21 +165,18 @@ function updateFunctions(){
 			if(coins.children[i].alive){
 				coins.children[i].animations.play('spin');
 			}
-			
 		}
 		
-		// // if (playerBaseLevel == "tube" || playerBaseLevel == "rock" || playerBaseLevel == "steps1" || playerBaseLevel == "steps2")
-		
-		// game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
-		// game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
-		// game.physics.arcade.collide(mysprite, energyBottle, myspriteEnergyCollision, null, this);
-		// game.physics.arcade.collide(mysprite, enemies, myspriteEnemiesCollision, null, this);
-		// game.physics.arcade.collide(enemies, obstructs, enemyObstructCollision, null, this);
-		// game.physics.arcade.collide(mysprite, rock, myspriteRockCollision, null, this);
-		// game.physics.arcade.collide(mysprite, treasureBrick, myspriteTreasureCollision, null, this);
-		// game.physics.arcade.collide(mysprite, coins, myspriteCoinCollision, null, this);
-		// game.physics.arcade.collide(mysprite, tubes, myspriteTubesCollision, null, this);
-		// game.physics.arcade.collide(mysprite, steps1, myspriteSteps1Collision, null, this);
-		// game.physics.arcade.collide(mysprite, steps2, myspriteSteps2Collision, null, this);
+		game.physics.arcade.collide(mysprite, targetBox, myspriteMysteryCollision, null, this);
+		game.physics.arcade.collide(mysprite, princess, myspriteMysteryCollision, null, this);
+		game.physics.arcade.collide(mysprite, energyBottle, myspriteEnergyCollision, null, this);
+		game.physics.arcade.collide(mysprite, enemies, myspriteEnemiesCollision, null, this);
+		game.physics.arcade.collide(enemies, obstructs, enemyObstructCollision, null, this);
+		game.physics.arcade.collide(mysprite, rock, myspriteRockCollision, null, this);
+		game.physics.arcade.collide(mysprite, treasureBrick, myspriteTreasureCollision, null, this);
+		game.physics.arcade.collide(mysprite, coins, myspriteCoinCollision, null, this);
+		game.physics.arcade.collide(mysprite, tubes, myspriteTubesCollision, null, this);
+		game.physics.arcade.collide(mysprite, steps1, myspriteSteps1Collision, null, this);
+		game.physics.arcade.collide(mysprite, steps2, myspriteSteps2Collision, null, this);
 	}
 }

@@ -12,7 +12,6 @@ var main = function(game){}
 			game.scale.setScreenSize(true);
 			game.load.image("cloud", "images/layer-6_small.png");
 			game.load.image("sky", "images/layer-1_small.png");
-			
 			game.load.image("grass", "images/grass.png");
 			game.load.image("ground", "images/ground4.jpg");
 			game.load.image("fence", "images/fence2.png");
@@ -41,49 +40,53 @@ var main = function(game){}
 			game.load.image("targetBox", "images/targetBox.png");
 			game.load.image("princess", "images/princessTrapped.png");
 			
-			game.load.spritesheet("enemiesSprite", "images/enemiesSpritesheet.png");
+			game.load.image("titleBg", "images/mystery_bg.png");
+			
+			game.load.image("sevenHuesTitle", "images/sevenHuesTitle.png");
+			
+			game.load.image("titleTry", "images/titleTry.png");
+			
+			game.load.spritesheet("mysterySprite", "images/mysterySprite2.png",550,187);
 			
 			game.load.spritesheet("coinsSprite", "images/coinSprite.png",40,39);
 			
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
-		
 			
+			game.load.image("witch", "images/witch.png");
+			game.load.image("heart", "images/lives.png");
+			game.load.image("pit", "images/pit.png");			
 		},
 		create: function() { 
-			sky = game.add.tileSprite(0,0,game.width,game.height,'sky');
-			cloud = game.add.tileSprite(0, 0,game.width,500, 'cloud');
+			sevenHuesTitle = game.add.sprite(0,0,'sevenHuesTitle');
+			sevenHuesTitle.width = game.width;
+			sevenHuesTitle.height = game.height;
 			
-			ground = game.add.tileSprite(0, game.height/1.5,game.width,400, 'ground');
+			mysteryTitle = 0;
 			
-			fence = game.add.tileSprite(0,279,10000,45,"fence");
-			grass = game.add.tileSprite(0, game.height/1.55, 10000, 15, "grass");
-			
-			tubes = game.add.sprite(730,game.height/1.9,'tube');
-			
-			rock = game.add.sprite(game.width/3, game.height/2.65,'rock');
-			rock = game.add.sprite(game.width/3+30, game.height/2.65,'rock');
-			rock = game.add.sprite(game.width/3+60, game.height/2.65,'rock');
-			
-			mysprite=game.add.sprite(game.width/6,game.height/1.75,'rightSprite');
-			mysprite.frame=4;
-			
-			gameTitleText = game.add.text(game.width/4.5,game.height/4.5,"JOURNEY TO MYSTERY LAND",{
-				font:"bold 26px Arial", fill: "red" 
-			});
-			
-			startText = game.add.text(game.width/2.5,game.height/2.5,"Tap To Start",{
-				font:"bold 26px Arial", fill: "red" 
-			});
-			
-			villian1 = game.add.sprite(300, 340, 'villian');
-			
-			//game.input.onDown.add(startGame, this);
-			
-			menuScreen();
-			
+			setTimeout(function(){
+				mysteryTitle = 1;
+				titleTry = game.add.sprite(0,0,'titleTry');
+				titleTry.width = game.width;
+				titleTry.height = game.height;
+				
+				mysterySprite = game.add.sprite(game.width/2.37,game.height/1.34,'mysterySprite');
+				mysterySprite.width = (game.width*550)/1920;
+				mysterySprite.height = (game.height*187)/1080;
+				mysterySprite.frame=0;
+				
+				mysterySprite.animations.add('changeColor',[0,1,2,3],7,true);
+				
+				startText = game.add.text(game.width/3.5,game.height/3.5,"Tap Anywhere To Start",{
+					font:"bold 30px Algerian", fill: "#ff88bb" 
+				});
+				
+				menuScreen();
+			}, 1500)			
 		},
 		update: function() {
-			
+			if (mysteryTitle == 1){
+				mysterySprite.animations.play("changeColor");
+			}
 		}
 	}
 	

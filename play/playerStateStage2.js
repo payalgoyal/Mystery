@@ -27,8 +27,8 @@
 				font:"bold 40px Arial", fill: "red" 
 					});
 					
-			levelText = game.add.text(game.width/2.5,90," Level " + stage2CurrLevel ,{
-				font:"bold 40px Arial", fill: "red" 
+			levelText = game.add.text(game.width/2.4,90," Level " + stage2CurrLevel ,{
+				font:"bold 26px Arial", fill: "red" 
 					});
 			
 			mysprite=game.add.sprite(game.width/2.9,game.height/2.5,'rightSprite');
@@ -101,6 +101,18 @@
 			game.state.add("Stage2LevelDesign5",stage2LevelDesign5);
 			game.state.start("Stage2LevelDesign5");
 		}
+		if (stage2CurrLevel == 6){
+			game.state.add("Stage2LevelDesign6",stage2LevelDesign6);
+			game.state.start("Stage2LevelDesign6");
+		}
+		if (stage2CurrLevel == 7){
+			game.state.add("Stage2LevelDesign7",stage2LevelDesign7);
+			game.state.start("Stage2LevelDesign7");
+		}
+		if (stage2CurrLevel == 8){
+			game.state.add("Stage2LevelDesign8",stage2LevelDesign8);
+			game.state.start("Stage2LevelDesign8");
+		}
 	}
 	
 	function gameRestartedStage2(){
@@ -126,6 +138,18 @@
 			game.state.start("State2LevelDesign5");
 		}
 		else if (stage2CurrLevel == 5){
+			game.state.add("State2LevelDesign6",state2LevelDesign6);
+			game.state.start("State2LevelDesign6");
+		}
+		else if (stage2CurrLevel == 6){
+			game.state.add("State2LevelDesign7",state2LevelDesign7);
+			game.state.start("State2LevelDesign7");
+		}
+		else if (stage2CurrLevel == 7){
+			game.state.add("State2LevelDesign8",state2LevelDesign8);
+			game.state.start("State2LevelDesign8");
+		}
+		else if (stage2CurrLevel == 8){
 			gameCompleteText = game.add.text(game.width/2,game.height/2,"Game Completed. Wait for new Levels ",{
 				font:"bold 24px Arial", fill: "red" 
 			});

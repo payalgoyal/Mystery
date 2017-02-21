@@ -35,9 +35,9 @@ var playerProperties = {
   velocity: 300,
 }; 
 
-var stage2LevelDesign5 = function(game){}
+var stage2LevelDesign6 = function(game){}
 // Creates a new 'main' state that will contain the game
-	stage2LevelDesign5.prototype = {
+	stage2LevelDesign6.prototype = {
 		preload: function() { 
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);
@@ -53,7 +53,7 @@ var stage2LevelDesign5 = function(game){}
 			pitFall = false;
 			levelSuccess = 0;
 			currStage = 2;
-			stage2CurrLevel = 5;
+			stage2CurrLevel = 6;
 			
 			game.world.setBounds(0,0,20000,0);
 			
@@ -69,8 +69,8 @@ var stage2LevelDesign5 = function(game){}
 			});
 			levelAtTopText.fixedToCamera = true;
 			
-			targetBox = game.add.sprite(9670,game.height/1.55-50,'targetBox');
-			princess = game.add.sprite(9700,game.height/1.55-110,'princess');
+			targetBox = game.add.sprite(9870,game.height/1.55-50,'targetBox');
+			princess = game.add.sprite(9900,game.height/1.55-110,'princess');
 			princess.width = 120;
 			princess.height = 120;
 			
@@ -84,7 +84,7 @@ var stage2LevelDesign5 = function(game){}
 			
 			pits = game.add.group();
 			pits.enableBody = true;
-			pits.createMultiple(3,'pit');
+			pits.createMultiple(7,'pit');
 			
 			witch = game.add.sprite(200,110,'witch');
 			witch.width = game.height/4;
@@ -93,15 +93,15 @@ var stage2LevelDesign5 = function(game){}
 			
 			steps1 = game.add.group();
 			steps1.enableBody = true;
-			steps1.createMultiple(9,'lowerSteps');
+			steps1.createMultiple(7,'lowerSteps');
 			
 			steps2 = game.add.group();
 			steps2.enableBody = true;
-			steps2.createMultiple(9,'steps2');
+			steps2.createMultiple(7,'steps2');
 			
 			treasureBrick = game.add.group();
 			treasureBrick.enableBody = true;
-			treasureBrick.createMultiple(12,'treasureBrick');
+			treasureBrick.createMultiple(8,'treasureBrick');
 			
 			// for (var i = 0;i < treasureBrick.children.length;i++){
 				// treasureBrick.children[i].traversed = 3;
@@ -109,7 +109,7 @@ var stage2LevelDesign5 = function(game){}
 			
 			rock = game.add.group();
 			rock.enableBody = true;
-			rock.createMultiple(25, 'rock');
+			rock.createMultiple(31, 'rock');
 			
 			for (var i =0;i<rock.children.length;i++){
 				rock.children[i].body.velocity.y = 0;
@@ -118,7 +118,7 @@ var stage2LevelDesign5 = function(game){}
 			
 			coins = game.add.group();
 			coins.enableBody = true;
-			coins.createMultiple(21,'coinsSprite');
+			coins.createMultiple(23,'coinsSprite');
 			
 			tubes = game.add.group();
 			tubes.enableBody = true;
@@ -136,246 +136,242 @@ var stage2LevelDesign5 = function(game){}
 			mysprite.dying = false;
 			livesDeducted = false;
 			
-			treasureBrick.children[0].reset(856,game.height/2.65);
+			steps1.children[0].reset(740,game.height/1.55);
+			steps2.children[0].reset(770,game.height/1.64);
+			
+			enemies.children[0].reset(890,game.height/1.65);
+			enemies.children[0].vel = 100;
+			
+			rock.children[0].reset(936, game.height/2.65);
+			rock.children[0].edgeLeft = true;
+			rock.children[1].reset(976, game.height/2.65);
+			treasureBrick.children[0].reset(1016,game.height/2.65);
 			treasureBrick.children[0].power = 1;
 			treasureBrick.children[0].traversed = false;
-			treasureBrick.children[0].edgeLeft = true;
-			treasureBrick.children[1].reset(896,game.height/2.65);
+			rock.children[2].reset(1056, game.height/2.65);
+			treasureBrick.children[1].reset(1096,game.height/2.65);
 			treasureBrick.children[1].traversed = 3;
-			rock.children[0].reset(936, game.height/2.65);
-			rock.children[0].edgeRight = true;
-			
-			rock.children[1].reset(1100, game.height/6);
-			rock.children[1].edgeLeft = true;
-			rock.children[1].edgeRight = true;
+			treasureBrick.children[1].edgeRight = true;
 			
 			tubes.children[0].reset(1230,game.height/1.9);
 			
-			enemies.children[0].reset(1390,game.height/1.65);
-			enemies.children[0].vel = 100;
-			
-			steps1.children[0].reset(1740,game.height/1.55);
-			steps2.children[0].reset(1770,game.height/1.64);
-			
-			enemies.children[1].reset(1950,game.height/1.65);
+			enemies.children[1].reset(1450,game.height/1.65);
 			enemies.children[1].vel = 200;
 			
-			rock.children[2].reset(1860, game.height/6);
-			rock.children[2].edgeLeft = true;
-			rock.children[3].reset(1900, game.height/6);
-			rock.children[4].reset(1940, game.height/6);
-			rock.children[5].reset(1980, game.height/6);
-			rock.children[5].edgeRight = true;
-			
-			coins.children[0].reset(2080,100);
-			coins.children[0].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[1].reset(2120,100);
-			coins.children[1].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[2].reset(2160,100);
-			coins.children[2].animations.add('spin',[0,1,2,3],10,true);
-			
-			pits.children[0].reset(2300,279);
-			pits.children[0].height = 200;
-			
-			steps1.children[1].reset(2540,game.height/1.55);
-			steps2.children[1].reset(2570,game.height/1.64);
-			
-			enemies.children[2].reset(2700,game.height/1.65);
+			enemies.children[2].reset(1550,game.height/1.65);
 			enemies.children[2].vel = 100;
 			
-			enemies.children[3].reset(3400,game.height/1.65);
-			enemies.children[3].vel = 100;
+			pits.children[0].reset(1900,279);
+			pits.children[0].height = 200;
 			
-			coins.children[3].reset(2760,100);
-			coins.children[3].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[4].reset(2800,100);
-			coins.children[4].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[5].reset(2840,100);
-			coins.children[5].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[6].reset(2720,150);
-			coins.children[6].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[7].reset(2760,150);
-			coins.children[7].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[8].reset(2800,150);
-			coins.children[8].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[9].reset(2840,150);
-			coins.children[9].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[10].reset(2880,150);
-			coins.children[10].animations.add('spin',[0,1,2,3],10,true);	
-			
-			rock.children[6].reset(3220, game.height/6);
-			rock.children[6].edgeLeft = true;
-			treasureBrick.children[2].reset(3260,game.height/2.65);
-			treasureBrick.children[2].traversed = 3;
-			treasureBrick.children[3].reset(3300,game.height/2.65);
-			treasureBrick.children[3].traversed = 3;
-			rock.children[7].reset(3340, game.height/6);
+			rock.children[3].reset(2060, game.height/2.65);
+			rock.children[3].edgeLeft = true;
+			rock.children[4].reset(2100, game.height/2.65);
+			rock.children[5].reset(2140, game.height/2.65);
+			rock.children[6].reset(2180, game.height/2.65);
+			rock.children[7].reset(2200, game.height/2.65);
 			rock.children[7].edgeRight = true;
 			
-			tubes.children[1].reset(3530,game.height/1.9);
+			rock.children[8].reset(2060, game.height/6);
+			rock.children[8].edgeLeft = true;
+			rock.children[9].reset(2100, game.height/6);
+			rock.children[10].reset(2140, game.height/6);
+			rock.children[11].reset(2180, game.height/6);
+			rock.children[12].reset(2200, game.height/6);
+			rock.children[12].edgeRight = true;
 			
-			enemies.children[4].reset(3690,game.height/1.65);
+			enemies.children[3].reset(2450,game.height/1.65);
+			enemies.children[3].vel = 200;
+			
+			enemies.children[4].reset(2250,game.height/1.65);
 			enemies.children[4].vel = 100;
 			
-			steps1.children[2].reset(3740,game.height/1.55);
-			steps2.children[2].reset(3770,game.height/1.64);
+			steps1.children[1].reset(2500,game.height/1.55);
+			steps2.children[1].reset(2530,game.height/1.64);
 			
-			pits.children[1].reset(3900,279);
+			tubes.children[1].reset(2730,game.height/1.9);
+			
+			coins.children[0].reset(2880,100);
+			coins.children[0].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[1].reset(2920,100);
+			coins.children[1].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[2].reset(2960,100);
+			coins.children[2].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[3].reset(3000,100);
+			coins.children[3].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[4].reset(2880,150);
+			coins.children[4].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[5].reset(2920,150);
+			coins.children[5].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[6].reset(2960,150);
+			coins.children[6].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[7].reset(3000,150);
+			coins.children[7].animations.add('spin',[0,1,2,3],10,true);
+			
+			pits.children[1].reset(3300,279);
 			pits.children[1].height = 200;
 			
-			tubes.children[2].reset(4100,game.height/1.9);
+			tubes.children[2].reset(3630,game.height/1.9);
 			
-			rock.children[8].reset(4220, game.height/6);
-			rock.children[8].edgeLeft = true;
-			rock.children[9].reset(4260, game.height/6);
-			rock.children[10].reset(4300, game.height/6);
-			treasureBrick.children[4].reset(4340,game.height/2.65);
-			treasureBrick.children[4].traversed = 3;
-			treasureBrick.children[4].edgeRight = true;
+			coins.children[8].reset(3710,game.height/1.9);
+			coins.children[8].animations.add('spin',[0,1,2,3],10,true);
 			
-			steps1.children[3].reset(4600,game.height/1.55);
-			steps2.children[3].reset(4630,game.height/1.64);
+			coins.children[9].reset(3750,game.height/1.9);
+			coins.children[9].animations.add('spin',[0,1,2,3],10,true);
 			
-			steps1.children[4].reset(4700,game.height/1.55);
-			steps2.children[4].reset(4730,game.height/1.64);
+			coins.children[10].reset(3790,game.height/1.9);
+			coins.children[10].animations.add('spin',[0,1,2,3],10,true);
 			
-			treasureBrick.children[5].reset(4920,game.height/6);
-			treasureBrick.children[5].edgeLeft = true;
+			tubes.children[3].reset(3830,game.height/1.9);
+			
+			pits.children[2].reset(4000,279);
+			pits.children[2].height = 200;
+			
+			rock.children[13].reset(4260, game.height/6);
+			rock.children[13].edgeLeft = true;
+			rock.children[14].reset(4300, game.height/6);
+			treasureBrick.children[2].reset(4340, game.height/6);
+			treasureBrick.children[2].traversed = false;
+			treasureBrick.children[2].power = 1;
+			treasureBrick.children[3].reset(4380, game.height/6);
+			treasureBrick.children[3].traversed = false;
+			rock.children[15].reset(4420, game.height/6);
+			rock.children[15].edgeRight = true;
+			
+			pits.children[3].reset(4600,279);
+			pits.children[3].height = 200;
+			
+			steps1.children[2].reset(4750,game.height/1.55);
+			steps2.children[2].reset(4780,game.height/1.64);
+			
+			enemies.children[5].reset(4880,game.height/1.65);
+			enemies.children[5].vel = 100;
+			
+			steps1.children[3].reset(5000,game.height/1.55);
+			steps2.children[3].reset(5030,game.height/1.64);
+			
+			rock.children[16].reset(5260, game.height/6);
+			rock.children[16].edgeLeft = true;
+			rock.children[17].reset(5300, game.height/6);
+			rock.children[18].reset(5340, game.height/6);
+			rock.children[18].edgeRight = true;
+			
+			coins.children[11].reset(5260,100);
+			coins.children[11].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[12].reset(5300,100);
+			coins.children[12].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[13].reset(5340,100);
+			coins.children[13].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[14].reset(5260,game.height/1.9);
+			coins.children[14].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[15].reset(5300,game.height/1.9);
+			coins.children[15].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[16].reset(5340,game.height/1.9);
+			coins.children[16].animations.add('spin',[0,1,2,3],10,true);
+			
+			enemies.children[6].reset(5280,game.height/1.65);
+			enemies.children[6].vel = 100;
+			
+			pits.children[4].reset(5440,279);
+			pits.children[4].height = 200;
+			
+			tubes.children[4].reset(5630,game.height/1.9);
+			
+			enemies.children[7].reset(5780,game.height/1.65);
+			enemies.children[7].vel = 100;
+			
+			steps1.children[4].reset(5900,game.height/1.55);
+			steps2.children[4].reset(5930,game.height/1.64);
+			
+			treasureBrick.children[4].reset(6100, game.height/6);
+			treasureBrick.children[4].edgeLeft = true;
+			treasureBrick.children[4].traversed = false;
+			treasureBrick.children[4].power = 1;
+			rock.children[19].reset(6140, game.height/6);
+			rock.children[20].reset(6180, game.height/6);
+			rock.children[21].reset(6220, game.height/6);
+			treasureBrick.children[5].reset(6260, game.height/6);
 			treasureBrick.children[5].edgeRight = true;
 			treasureBrick.children[5].traversed = 3;
 			
-			tubes.children[3].reset(5180,game.height/1.9);
-			
-			tubes.children[4].reset(5300,game.height/1.9);
-			
-			rock.children[11].reset(5720, game.height/2.65);
-			rock.children[12].edgeLeft = true;
-			rock.children[13].reset(5760, game.height/2.65);
-			rock.children[14].reset(5800, game.height/2.65);
-			rock.children[15].reset(5840, game.height/2.65);
-			rock.children[15].edgeRight = true;
-			
-			coins.children[11].reset(5760,150);
-			coins.children[11].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[12].reset(5800,150);
-			coins.children[12].animations.add('spin',[0,1,2,3],10,true);	
-			
-			treasureBrick.children[6].reset(5800,game.height/6);
-			treasureBrick.children[6].edgeLeft = true;
-			treasureBrick.children[6].traversed = 3;
-			rock.children[16].reset(5840, game.height/6);
-			rock.children[16].edgeRight = true;
-			
-			pits.children[2].reset(6200,279);
-			pits.children[2].height = 200;
-			
-			coins.children[13].reset(6360,150);
-			coins.children[13].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[14].reset(6400,150);
-			coins.children[14].animations.add('spin',[0,1,2,3],10,true);	
-			
-			coins.children[15].reset(6440,150);
-			coins.children[15].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[16].reset(6480,150);
-			coins.children[15].animations.add('spin',[0,1,2,3],10,true);	
-			
-			tubes.children[4].reset(6630,game.height/1.9);
-			
-			enemies.children[5].reset(6730,game.height/1.65);
-			enemies.children[5].vel = 100;
-			
-			rock.children[17].reset(6840, game.height/6);
-			rock.children[17].edgeRight = true;
-			rock.children[17].edgeLeft = true;
-			
-			rock.children[18].reset(6940, game.height/6);
-			rock.children[18].edgeRight = true;
-			rock.children[18].edgeLeft = true;
-			
-			steps1.children[5].reset(7200,game.height/1.55);
-			steps2.children[5].reset(7230,game.height/1.64);
-			
-			enemies.children[6].reset(7340,game.height/1.65);
-			enemies.children[6].vel = 100;
-			
-			steps1.children[6].reset(7400,game.height/1.55);
-			steps2.children[6].reset(7430,game.height/1.64);
-			
-			coins.children[17].reset(7620,150);
-			coins.children[17].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[18].reset(7660,150);
-			coins.children[18].animations.add('spin',[0,1,2,3],10,true);
-
-			coins.children[19].reset(8000,150);
-			coins.children[19].animations.add('spin',[0,1,2,3],10,true);
-			
-			coins.children[20].reset(8040,150);
-			coins.children[20].animations.add('spin',[0,1,2,3],10,true);
-			
-			steps1.children[7].reset(8200,game.height/1.55);
-			steps2.children[7].reset(8230,game.height/1.64);
-			
-			rock.children[19].reset(8200, game.height/6);
-			rock.children[19].edgeLeft = true;
-			rock.children[20].reset(8240, game.height/6);
-			rock.children[20].edgeRight = true;
-			
-			rock.children[21].reset(8340, game.height/6);
-			rock.children[21].edgeLeft = true;
-			treasureBrick.children[7].reset(8380,game.height/6);
-			treasureBrick.children[7].traversed = 3;
-			rock.children[22].reset(8420, game.height/6);
-			rock.children[22].edgeRight = true;
-			
-			enemies.children[7].reset(8500,game.height/1.65);
-			enemies.children[7].vel = 200;
-			
-			enemies.children[8].reset(8340,game.height/1.65);
+			enemies.children[8].reset(6780,game.height/1.65);
 			enemies.children[8].vel = 100;
 			
-			tubes.children[5].reset(8630,game.height/1.9);
+			steps1.children[5].reset(6900,game.height/1.55);
+			steps2.children[5].reset(6930,game.height/1.64);
 			
-			enemies.children[9].reset(8740,game.height/1.65);
+			pits.children[5].reset(7100,279);
+			pits.children[5].height = 200;
+			
+			tubes.children[5].reset(7430,game.height/1.9);
+			
+			enemies.children[9].reset(7680,game.height/1.65);
 			enemies.children[9].vel = 100;
 			
-			steps1.children[8].reset(8800,game.height/1.55);
-			steps2.children[8].reset(8830,game.height/1.64);
+			steps1.children[6].reset(7900,game.height/1.55);
+			steps2.children[6].reset(7930,game.height/1.64);
 			
-			rock.children[23].reset(8940, game.height/2.65);
-			rock.children[23].edgeLeft = true;
-			treasureBrick.children[8].reset(8980,game.height/2.65);
-			treasureBrick.children[8].traversed = 3;
-			rock.children[24].reset(9020, game.height/2.65);
+			rock.children[22].reset(8240, game.height/6);
+			rock.children[22].edgeLeft = true;
+			rock.children[23].reset(8280, game.height/6);
+			rock.children[24].reset(8320, game.height/6);
 			rock.children[24].edgeRight = true;
 			
-			treasureBrick.children[9].reset(8940,game.height/6);
-			treasureBrick.children[9].traversed = 3;
-			treasureBrick.children[9].edgeLeft = true;
-			treasureBrick.children[10].reset(8980,game.height/6);
-			treasureBrick.children[10].traversed = 3;
-			treasureBrick.children[11].reset(9020,game.height/6);
-			treasureBrick.children[11].traversed = 3;
-			treasureBrick.children[11].edgeRight = true;
+			rock.children[25].reset(8240, game.height/6);
+			rock.children[25].edgeLeft = true;
+			rock.children[26].reset(8280, game.height/6);
+			rock.children[27].reset(8320, game.height/6);
+			treasureBrick.children[6].reset(8360, game.height/6);
+			treasureBrick.children[6].edgeRight = true;
+			treasureBrick.children[6].traversed = 3;
 			
-			tubes.children[6].reset(9330,game.height/1.9);
+			pits.children[6].reset(8500,279);
+			pits.children[6].height = 200;
 			
-			enemies.children[10].reset(9400,game.height/1.65);
+			coins.children[17].reset(8650,100);
+			coins.children[17].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[18].reset(8690,100);
+			coins.children[18].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[19].reset(8730,100);
+			coins.children[19].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[20].reset(8890,game.height/1.9);
+			coins.children[20].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[21].reset(8930,game.height/1.9);
+			coins.children[21].animations.add('spin',[0,1,2,3],10,true);
+			
+			coins.children[22].reset(8970,game.height/1.9);
+			coins.children[22].animations.add('spin',[0,1,2,3],10,true);
+			
+			rock.children[28].reset(9140, game.height/6);
+			rock.children[28].edgeLeft = true;
+			rock.children[29].reset(9180, game.height/6);
+			rock.children[30].reset(9220, game.height/6);
+			treasureBrick.children[7].reset(9260, game.height/6);
+			treasureBrick.children[7].edgeRight = true;
+			treasureBrick.children[7].traversed = 3;
+			
+			tubes.children[6].reset(9340,game.height/1.9);
+			
+			enemies.children[10].reset(9480,game.height/1.65);
 			enemies.children[10].vel = 100;
 			
-			tubes.children[7].reset(9530,game.height/1.9);
+			tubes.children[7].reset(9630,game.height/1.9);
 			
 			energyBottle = game.add.sprite(-1000,-1000,'energyBottle');
 			

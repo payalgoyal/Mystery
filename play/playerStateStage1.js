@@ -27,8 +27,8 @@
 				font:"bold 40px Arial", fill: "red" 
 					});
 					
-			levelText = game.add.text(game.width/2.5,90," Level " + stage1CurrLevel ,{
-				font:"bold 40px Arial", fill: "red" 
+			levelText = game.add.text(game.width/2.4,90," Level " + stage1CurrLevel ,{
+				font:"bold 26px Arial", fill: "red" 
 					});
 			
 			mysprite=game.add.sprite(game.width/2.9,game.height/2.5,'rightSprite');
@@ -48,7 +48,7 @@
 				restartGame.onInputDown.add(gameRestarted);
 			}
 			
-			if (remLives > 0 || timerEnd == 1){
+			if (remLives > 0){
 				restartLevel = game.add.button(game.width/2,game.height/1.6,"levelsLand");
 				textOnRestartButton = game.add.text(restartLevel.x+restartLevel.width/3,restartLevel.y+restartLevel.height/3,"Restart Level",{
 					font:"bold 24px Arial", fill: "white" 
@@ -101,6 +101,18 @@
 			game.state.add("stage1LevelDesign5",stage1LevelDesign5);
 			game.state.start("stage1LevelDesign5");
 		}
+		else if (stage1CurrLevel == 6){
+			game.state.add("stage1LevelDesign6",stage1LevelDesign6);
+			game.state.start("stage1LevelDesign6");
+		}
+		else if (stage1CurrLevel == 7){
+			game.state.add("stage1LevelDesign7",stage1LevelDesign7);
+			game.state.start("stage1LevelDesign7");
+		}
+		else if (stage1CurrLevel == 8){
+			game.state.add("stage1LevelDesign8",stage1LevelDesign8);
+			game.state.start("stage1LevelDesign8");
+		}
 	}
 	
 	function gameRestarted(){
@@ -126,6 +138,18 @@
 			game.state.start("Stage1LevelDesign5");
 		}
 		else if (stage1CurrLevel == 5){
+			game.state.add("Stage1LevelDesign6",stage1LevelDesign6);
+			game.state.start("Stage1LevelDesign6");
+		}
+		else if (stage1CurrLevel == 6){
+			game.state.add("Stage1LevelDesign7",stage1LevelDesign7);
+			game.state.start("Stage1LevelDesign7");
+		}
+		else if (stage1CurrLevel == 7){
+			game.state.add("Stage1LevelDesign8",stage1LevelDesign8);
+			game.state.start("Stage1LevelDesign8");
+		}
+		else if (stage1CurrLevel == 8){
 			game.state.add("Stage2Levels",stage2Levels);
 			game.state.start("Stage2Levels");
 		}

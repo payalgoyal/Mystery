@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Journey To Mystery Island</title>
+		
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width height=device-height, target-densitydpi=device-dpi" /> -->
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+		
+		<script src="play/stage1LevelDesign1.js"></script>
+		<script src="play/stage1LevelDesign2.js"></script>
+		<script src="play/stage1LevelDesign3.js"></script>
+		<script src="play/stage1LevelDesign4.js"></script>
+		<script src="play/stage1LevelDesign5.js"></script>
+		<script src="play/stage2LevelDesign1.js"></script>
+		<script src="play/stage2LevelDesign2.js"></script>
+		<script src="play/stage2LevelDesign3.js"></script>
+		<script src="play/stage2LevelDesign4.js"></script>
+		<script src="play/stage2LevelDesign5.js"></script>
+		<script src="play/functions.js"></script>
+		<script src="play/levelUpdate.js"></script>
+		<script src="play/stage1Levels.js"></script>
+		<script src="play/stage2Levels.js"></script>
+		<script src="play/playerStateStage1.js"></script>
+		<script src="play/playerStateStage2.js"></script>
+		<script src="play/main.js"></script>
+		<script type="text/javascript" src="phonegap.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+	</head>
+	
+	<audio id="levelClicked" src="/android_asset/www/assets/levelClick.ogg"></audio>
+	<audio id="jump" src="/android_asset/www/assets/jump.ogg"></audio>
+	<audio id="brickBreaking" src="/android_asset/www/assets/brickBreaking.ogg"></audio>
+	<audio id="coinCollect" src="/android_asset/www/assets/coinCollect.ogg"></audio>
+	<audio id="energy" src="/android_asset/www/assets/energy.ogg"></audio>
+	<audio id="treasureHit" src="/android_asset/www/assets/treasureHit.ogg"></audio>
+	<audio id="enemyKilled" src="/android_asset/www/assets/enemyKilled.ogg"></audio>
+	<audio id="walk" src="/android_asset/www/assets/walk1.ogg"></audio>
+	
+	<body>
+		
+	</body>
+</html>
