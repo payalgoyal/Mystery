@@ -40,7 +40,8 @@ var stage1LevelDesign1 = function(game){}
 		preload: function() { 
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);		
-				
+			
+			game.load.audio("coinCollect","assets/coinCollect.ogg");
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
 		},
 		create: function() { 
@@ -77,7 +78,7 @@ var stage1LevelDesign1 = function(game){}
 			
 			// jump = game.add.audio('jump');
 			// brickBreaking = game.add.audio('brickBreaking');
-			// coinCollect = game.add.audio('coinCollect');
+			coinCollect = game.add.audio('coinCollect');
 			// energy = game.add.audio('energy');
 			// treasureHit = game.add.audio('treasureHit');
 			// enemyKill = game.add.audio('enemyKill');

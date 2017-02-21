@@ -16,10 +16,10 @@
 		};
 		
 		if (audioID === "walk"){
-			my_media = new Audio(url, null, null, loop); 
+			my_media = new Media(url, null, null, loop); 
 		}
 		else{
-			my_media = new Audio(url, null, null); 
+			my_media = new Media(url, null, null); 
 			// my_media = new Audio(url);
 		}
 		
@@ -501,7 +501,8 @@
 			treasureBrickTraversed[treasureIndex] = treasureBrickTraversed[treasureIndex]+1;
 			treasureCoin = game.add.sprite(treasureBrick.children[treasureIndex].x,treasureBrick.children[treasureIndex].y-10,'coinsSprite');
 			treasureCoin.animations.add('spin',[0,1,2,3],30,true);
-			playAudio("coinCollect");
+			// playAudio("coinCollect");
+			coinCollect.play();
 			treasureCoin.animations.play('spin');
 			setTimeout(function(){
 				treasureCoin.animations.stop();
@@ -564,7 +565,8 @@
 	function myspriteCoinCollision(a,b){
 		if (b.body.facing > 0 || b.body.touching.none == false){
 			b.visible = false;
-			playAudio("coinCollect");
+			// playAudio("coinCollect");
+			coinCollect.play();
 			b.kill();
 			coinsText.text = "Coins - " + ++coinsCollected;
 		}
