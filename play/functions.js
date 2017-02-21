@@ -16,10 +16,10 @@
 		};
 		
 		if (audioID === "walk"){
-			my_media = new Media(url, null, null, loop); 
+			my_media = new Audio(url, null, null, loop); 
 		}
 		else{
-			my_media = new Media(url, null, null); 
+			my_media = new Audio(url, null, null); 
 			// my_media = new Audio(url);
 		}
 		
