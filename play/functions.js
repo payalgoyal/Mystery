@@ -34,6 +34,7 @@
 				pitFall = true;
 				mysprite.body.velocity.y = 60;
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 				setTimeout(function(){
 					checkLives();
 				 }, 800);
@@ -229,6 +230,7 @@
 	function killPlayer(en){
 		mysprite.dying = true;
 		mysprite.body.velocity.x = 0;
+		my_media.pause();
 		mysprite.body.velocity.y = 0;
 		
 		mysprite.height = enemies.children[en].height/1.5;
@@ -302,6 +304,7 @@
 		if ((mysprite.body.facing == 1 || mysprite.body.facing == 2 || b.body.facing == 1 || b.body.facing == 2) && b.alive && a.energised == 0){
 			mysprite.dying = true;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			
 			mysprite.height = b.height/1.5;
@@ -353,6 +356,7 @@
 				b.body.immovable = true;
 				b.body.moves = false;
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 				playerBaseLevel = "ground";
 		}
 		
@@ -363,6 +367,7 @@
 			b.body.velocity.y = 0;
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			upButton.pressed = "false";
 			playerBaseLevel = "tube";
@@ -431,6 +436,7 @@
 		if (b.body.facing == 1
 			|| b.body.facing == 2){
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 				b.body.immovable = true;
 				b.body.moves = false;
 				playerBaseLevel = "ground";
@@ -456,6 +462,7 @@
 			mysprite.body.y = b.body.y - mysprite.height - 2;
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			b.body.velocity.y = 0;
 			b.body.velocity.x = 0;
@@ -530,6 +537,7 @@
 		if (b.body.facing == 1 || b.body.touching.left
 			|| b.body.facing == 2 || b.body.touching.right){
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 				b.body.velocity.y = 0;
 				b.body.velocity.x = 0;
 				b.body.gravity.y = 0;
@@ -551,6 +559,7 @@
 			mysprite.body.y = b.body.y - mysprite.height - 2;
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			b.body.velocity.y = 0;
 			b.body.velocity.x = 0;
@@ -593,6 +602,7 @@
 			
 			// if (move == "stopRight"){
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 			// }
 		}
 		
@@ -601,6 +611,7 @@
 			mysprite.body.y = b.body.y - b.body.height;
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			upButton.pressed = "false";
 			playerBaseLevel = "steps1";
@@ -628,6 +639,7 @@
 			
 			// if (move == "stopRight"){
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 			// }
 		}
 		
@@ -637,6 +649,7 @@
 			b.body.velocity.y = 0;
 			mysprite.body.gravity.y = 0;
 			mysprite.body.velocity.x = 0;
+			my_media.pause();
 			mysprite.body.velocity.y = 0;
 			upButton.pressed = "false";
 			playerBaseLevel = "steps2";
@@ -708,6 +721,7 @@
 						// mysprite.body.gravity.y = 0;
 						mysprite.body.gravity.y = 0;
 						mysprite.body.velocity.x = 0;
+						my_media.pause();
 						mysprite.body.velocity.y = 0;
 						upButton.pressed = "false";
 						playerBaseLevel = "steps1";
@@ -780,6 +794,7 @@
 							steps2.children[stepsInd].body.velocity.y = 0;
 							mysprite.body.gravity.y = 0;
 							mysprite.body.velocity.x = 0;
+							my_media.pause();
 							mysprite.body.velocity.y = 0;
 							upButton.pressed = "false";
 							playerBaseLevel = "steps2";
@@ -789,6 +804,7 @@
 							mysprite.y = steps1.children[stepsInd].y - mysprite.height;
 							mysprite.body.gravity.y = 0;
 							mysprite.body.velocity.x = 0;
+							my_media.pause();
 							mysprite.body.velocity.y = 0;
 							upButton.pressed = "false";
 							playerBaseLevel = "step1";
@@ -822,6 +838,7 @@
 				mysprite.body.velocity.y = 0;
 				mysprite.body.gravity.y = 0;
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 			}
 			checkCollision();
 		}	,1550)
@@ -836,6 +853,7 @@
 				mysprite.body.velocity.y = 0;
 				mysprite.body.gravity.y = 0;
 				mysprite.body.velocity.x = 0;
+				my_media.pause();
 			}
 			checkCollision();
 		}	,1550)
@@ -882,6 +900,7 @@
 						mysprite.body.gravity.y = 0;
 						if (rightButton.pressed == "false" || leftButton.pressed == "false"){
 							mysprite.body.velocity.x = 0;
+							my_media.pause();
 						}
 						mysprite.body.velocity.y = 0;
 						rock.children[ind].body.immovable = true;
@@ -910,6 +929,7 @@
 				mysprite.body.gravity.y = 0;
 				if (rightButton.pressed == "false" || leftButton.pressed == "false"){
 					mysprite.body.velocity.x = 0;
+					my_media.pause();
 				}
 				mysprite.body.velocity.y = 0;
 				upButton.pressed = "false";
@@ -931,6 +951,7 @@
 						if (mysprite.y+mysprite.height < enemies.children[en].y+5 && mysprite.y+mysprite.height > enemies.children[en].y){
 							mysprite.body.velocity.y =0;
 							mysprite.body.velocity.x =0;
+							my_media.pause();
 							enemies.children[en].body.gravity.y = 0;
 							enemies.children[en].body.velocity.y = 0;
 							
@@ -955,6 +976,7 @@
 						if (mysprite.x > enemies.children[en].x && mysprite.x < enemies.children[en].x+enemies.children[en].width){
 							mysprite.body.velocity.y =0;
 							mysprite.body.velocity.x =0;
+							my_media.pause();
 							enemies.children[en].body.gravity.y = 0;
 							enemies.children[en].body.velocity.y = 0;
 							
@@ -1024,6 +1046,7 @@
 								mysprite.body.gravity.y = 0;
 								// my_media.stop();
 								mysprite.body.velocity.x = 0;
+								my_media.pause();
 								mysprite.body.velocity.y = 0;
 								upButton.pressed = "false";
 								playerBaseLevel = "steps2";
@@ -1033,6 +1056,7 @@
 								mysprite.y = steps1.children[stepsInd].y - mysprite.height;
 								mysprite.body.gravity.y = 0;
 								mysprite.body.velocity.x = 0;
+								my_media.pause();
 								mysprite.body.velocity.y = 0;
 								upButton.pressed = "false";
 								playerBaseLevel = "steps1";

@@ -41,7 +41,7 @@ var stage1LevelDesign1 = function(game){}
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.scale.setScreenSize(true);		
 			
-			game.load.audio("coinCollect","assets/coinCollect.ogg");
+			game.load.audio("coinCollect","/android_asset/www/assets/coinCollect.ogg");
 			game.load.spritesheet("rightSprite", "images/playerSprite.png",32,48);
 		},
 		create: function() { 
